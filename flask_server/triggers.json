@@ -1,0 +1,393 @@
+[
+  {
+    "trigger": "file for bankruptcy",
+    "weight": 0.32944355138375414,
+    "event_type": "Business.Declare-Bankruptcy"
+  },
+  {
+    "trigger": "go bankrupt",
+    "weight": 0.5940903421775121,
+    "event_type": "Business.Declare-Bankruptcy"
+  },
+  {
+    "trigger": "become insolvent",
+    "weight": 0.3793166557371157,
+    "event_type": "Business.Declare-Bankruptcy"
+  },
+  {
+    "trigger": "close down",
+    "weight": 0.15325202807230032,
+    "event_type": "Business.End-Org"
+  },
+  {
+    "trigger": "dissolve",
+    "weight": 0.893603038489585,
+    "event_type": "Business.End-Org"
+  },
+  {
+    "trigger": "terminate",
+    "weight": 0.14139673717560897,
+    "event_type": "Business.End-Org"
+  },
+  {
+    "trigger": "merge",
+    "weight": 0.8154273611877002,
+    "event_type": "Business.Merge-Org"
+  },
+  {
+    "trigger": "acquire",
+    "weight": 0.2989953597649967,
+    "event_type": "Business.Merge-Org"
+  },
+  {
+    "trigger": "consolidate",
+    "weight": 0.2772342093569701,
+    "event_type": "Business.Merge-Org"
+  },
+  {
+    "trigger": "incorporate",
+    "weight": 0.8246736737977819,
+    "event_type": "Business.Start-Org"
+  },
+  {
+    "trigger": "establish",
+    "weight": 0.08549775933779169,
+    "event_type": "Business.Start-Org"
+  },
+  {
+    "trigger": "found",
+    "weight": 0.5031237947166866,
+    "event_type": "Business.Start-Org"
+  },
+  {
+    "trigger": "attack",
+    "weight": 0.8260653852688651,
+    "event_type": "Conflict.Attack"
+  },
+  {
+    "trigger": "assault",
+    "weight": 0.6562074892663482,
+    "event_type": "Conflict.Attack"
+  },
+  {
+    "trigger": "violate",
+    "weight": 0.2281216111701141,
+    "event_type": "Conflict.Attack"
+  },
+  {
+    "trigger": "demonstrate",
+    "weight": 0.7968869786160677,
+    "event_type": "Conflict.Demonstrate"
+  },
+  {
+    "trigger": "protest",
+    "weight": 0.5532952364529586,
+    "event_type": "Conflict.Demonstrate"
+  },
+  {
+    "trigger": "rally",
+    "weight": 0.9302201627362384,
+    "event_type": "Conflict.Demonstrate"
+  },
+  {
+    "trigger": "meet",
+    "weight": 0.34609524449659135,
+    "event_type": "Contact.Meet"
+  },
+  {
+    "trigger": "gather",
+    "weight": 0.4586276741419927,
+    "event_type": "Contact.Meet"
+  },
+  {
+    "trigger": "confer",
+    "weight": 0.7896542634650722,
+    "event_type": "Contact.Meet"
+  },
+  {
+    "trigger": "communicate",
+    "weight": 0.029490112494515608,
+    "event_type": "Contact.Phone-Write"
+  },
+  {
+    "trigger": "correspond",
+    "weight": 0.47042751579267916,
+    "event_type": "Contact.Phone-Write"
+  },
+  {
+    "trigger": "contact",
+    "weight": 0.7107301649010139,
+    "event_type": "Contact.Phone-Write"
+  },
+  {
+    "trigger": "acquit",
+    "weight": 0.8214904951941203,
+    "event_type": "Justice.Acquit"
+  },
+  {
+    "trigger": "exonerate",
+    "weight": 0.7364324359217329,
+    "event_type": "Justice.Acquit"
+  },
+  {
+    "trigger": "clear",
+    "weight": 0.8011556313209075,
+    "event_type": "Justice.Acquit"
+  },
+  {
+    "trigger": "appeal",
+    "weight": 0.3119752150796904,
+    "event_type": "Justice.Appeal"
+  },
+  {
+    "trigger": "review",
+    "weight": 0.9105774652306513,
+    "event_type": "Justice.Appeal"
+  },
+  {
+    "trigger": "challenge",
+    "weight": 0.9285112737084428,
+    "event_type": "Justice.Appeal"
+  },
+  {
+    "trigger": "arrest",
+    "weight": 0.3953434808774299,
+    "event_type": "Justice.Arrest-Jail"
+  },
+  {
+    "trigger": "detain",
+    "weight": 0.9140285244979197,
+    "event_type": "Justice.Arrest-Jail"
+  },
+  {
+    "trigger": "incarcerate",
+    "weight": 0.6127716052236242,
+    "event_type": "Justice.Arrest-Jail"
+  },
+  {
+    "trigger": "indict",
+    "weight": 0.5821153481872329,
+    "event_type": "Justice.Charge-Indict"
+  },
+  {
+    "trigger": "charge",
+    "weight": 0.37834737584159817,
+    "event_type": "Justice.Charge-Indict"
+  },
+  {
+    "trigger": "prosecute",
+    "weight": 0.891461809944302,
+    "event_type": "Justice.Charge-Indict"
+  },
+  {
+    "trigger": "convict",
+    "weight": 0.6628480985755357,
+    "event_type": "Justice.Convict"
+  },
+  {
+    "trigger": "sentence",
+    "weight": 0.1389753521717112,
+    "event_type": "Justice.Convict"
+  },
+  {
+    "trigger": "execute",
+    "weight": 0.6898545361227449,
+    "event_type": "Justice.Execute"
+  },
+  {
+    "trigger": "carry out capital punishment",
+    "weight": 0.13769407176953363,
+    "event_type": "Justice.Execute"
+  },
+  {
+    "trigger": "extradite",
+    "weight": 0.21789788782416786,
+    "event_type": "Justice.Extradite"
+  },
+  {
+    "trigger": "deport",
+    "weight": 0.3696668603645259,
+    "event_type": "Justice.Extradite"
+  },
+  {
+    "trigger": "fine",
+    "weight": 0.1714593138725028,
+    "event_type": "Justice.Fine"
+  },
+  {
+    "trigger": "penalty",
+    "weight": 0.9011853815966733,
+    "event_type": "Justice.Fine"
+  },
+  {
+    "trigger": "pardon",
+    "weight": 0.7694146253725749,
+    "event_type": "Justice.Pardon"
+  },
+  {
+    "trigger": "clemency",
+    "weight": 0.06866380707914255,
+    "event_type": "Justice.Pardon"
+  },
+  {
+    "trigger": "release",
+    "weight": 0.4794626824795223,
+    "event_type": "Justice.Release-Parole"
+  },
+  {
+    "trigger": "parole",
+    "weight": 0.28005272218914334,
+    "event_type": "Justice.Release-Parole"
+  },
+  {
+    "trigger": "sentence",
+    "weight": 0.5399465055747964,
+    "event_type": "Justice.Sentence"
+  },
+  {
+    "trigger": "punishment",
+    "weight": 0.6723390910452745,
+    "event_type": "Justice.Sentence"
+  },
+  {
+    "trigger": "sue",
+    "weight": 0.37901203185361765,
+    "event_type": "Justice.Sue"
+  },
+  {
+    "trigger": "file a lawsuit",
+    "weight": 0.6710851824302027,
+    "event_type": "Justice.Sue"
+  },
+  {
+    "trigger": "bring a legal action",
+    "weight": 0.6666862016392162,
+    "event_type": "Justice.Sue"
+  },
+  {
+    "trigger": "go to trial",
+    "weight": 0.2145114398809972,
+    "event_type": "Justice.Trial-Hearing"
+  },
+  {
+    "trigger": "have a hearing",
+    "weight": 0.9521770423019322,
+    "event_type": "Justice.Trial-Hearing"
+  },
+  { "trigger": "die", "weight": 0.8603955341635033, "event_type": "Life.Die" },
+  {
+    "trigger": "pass away",
+    "weight": 0.47623892530201717,
+    "event_type": "Life.Die"
+  },
+  {
+    "trigger": "expire",
+    "weight": 0.3511362867084946,
+    "event_type": "Life.Die"
+  },
+  {
+    "trigger": "injure",
+    "weight": 0.2695944874106134,
+    "event_type": "Life.Injure"
+  },
+  {
+    "trigger": "harm",
+    "weight": 0.4598938145305974,
+    "event_type": "Life.Injure"
+  },
+  {
+    "trigger": "damage",
+    "weight": 0.8845286240019961,
+    "event_type": "Life.Injure"
+  },
+  {
+    "trigger": "transport",
+    "weight": 0.2173826080342246,
+    "event_type": "Movement.Transport"
+  },
+  {
+    "trigger": "move",
+    "weight": 0.6647702257103419,
+    "event_type": "Movement.Transport"
+  },
+  {
+    "trigger": "convey",
+    "weight": 0.34023783465456536,
+    "event_type": "Movement.Transport"
+  },
+  {
+    "trigger": "elect",
+    "weight": 0.1595771157467526,
+    "event_type": "Personnel.Elect"
+  },
+  {
+    "trigger": "choose",
+    "weight": 0.4038784569494266,
+    "event_type": "Personnel.Elect"
+  },
+  {
+    "trigger": "select",
+    "weight": 0.8939488727113575,
+    "event_type": "Personnel.Elect"
+  },
+  {
+    "trigger": "leave a position",
+    "weight": 0.32059015833347815,
+    "event_type": "Personnel.End-Position"
+  },
+  {
+    "trigger": "resign",
+    "weight": 0.7499584362804845,
+    "event_type": "Personnel.End-Position"
+  },
+  {
+    "trigger": "retire",
+    "weight": 0.9765163989950878,
+    "event_type": "Personnel.End-Position"
+  },
+  {
+    "trigger": "nominate",
+    "weight": 0.18885217862843862,
+    "event_type": "Personnel.Nominate"
+  },
+  {
+    "trigger": "propose",
+    "weight": 0.7181689111569403,
+    "event_type": "Personnel.Nominate"
+  },
+  {
+    "trigger": "put forward",
+    "weight": 0.8681329015543727,
+    "event_type": "Personnel.Nominate"
+  },
+  {
+    "trigger": "start a position",
+    "weight": 0.7096478395141922,
+    "event_type": "Personnel.Start-Position"
+  },
+  {
+    "trigger": "begin a job",
+    "weight": 0.7260565806459316,
+    "event_type": "Personnel.Start-Position"
+  },
+  {
+    "trigger": "take up a new role",
+    "weight": 0.5797507812355284,
+    "event_type": "Personnel.Start-Position"
+  },
+  {
+    "trigger": "transfer ownership",
+    "weight": 0.2674303076451674,
+    "event_type": "Transaction.Transfer-Ownership"
+  },
+  {
+    "trigger": "sell",
+    "weight": 0.17869720717253057,
+    "event_type": "Transaction.Transfer-Ownership"
+  },
+  {
+    "trigger": "dispose of",
+    "weight": 0.41979726177372245,
+    "event_type": "Transaction.Transfer-Ownership"
+  }
+]

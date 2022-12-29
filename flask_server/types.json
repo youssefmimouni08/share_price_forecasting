@@ -1,0 +1,360 @@
+[
+  {
+    "event": "Business.Declare-Bankruptcy",
+    "questionTemplate": [
+      {
+        "argumentRole": "org",
+        "question": "What declare bankruptcy?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Business.End-Org",
+    "questionTemplate": [
+      {
+        "argumentRole": "org",
+        "question": "What is ended?"
+      },
+      {
+        "argumentRole": "place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Business.Merge-Org",
+    "questionTemplate": [
+      {
+        "argumentRole": "org",
+        "question": "What is merged?"
+      }
+    ]
+  },
+  {
+    "event": "Business.Start-Org",
+    "questionTemplate": [
+      {
+        "argumentRole": "org",
+        "question": "What is started?"
+      },
+      {
+        "argumentRole": "place",
+        "question": "Where the event takes place?"
+      },
+      {
+        "argumentRole": "Agent",
+        "question": "Who is the founder?"
+      }
+    ]
+  },
+  {
+    "event": "Conflict.Attack",
+    "questionTemplate": [
+      {
+        "argumentRole": "place",
+        "question": "Where the event takes place?"
+      },
+      {
+        "argumentRole": "target",
+        "question": "Who is the target?"
+      },
+      {
+        "argumentRole": "Attacker",
+        "question": "Who is the attacking agent?"
+      },
+      {
+        "argumentRole": "Instrument",
+        "question": "What is the instrument used?"
+      },
+      {
+        "argumentRole": "Victim",
+        "question": "Who is the victim?"
+      }
+    ]
+  },
+  {
+    "event": "Conflict.Demonstrate",
+    "questionTemplate": [
+      {
+        "argumentRole": "Entity",
+        "question": "Who is demonstrating agent?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Contact.Meet",
+    "questionTemplate": [
+      {
+        "argumentRole": "Entity",
+        "question": "Who is meeting?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Contact.Phone-Write",
+    "questionTemplate": [
+      {
+        "argumentRole": "Entity",
+        "question": "Who is communicating agents?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Justice.Acquit",
+    "questionTemplate": [
+      {
+        "argumentRole": "Defendant",
+        "question": "Who is the defendant?"
+      },
+      {
+        "argumentRole": "Adjudicator",
+        "question": "What is the judge?"
+      }
+    ]
+  },
+  {
+    "event": "Justice.Appeal",
+    "questionTemplate": [
+      {
+        "argumentRole": "Adjudicator",
+        "question": "What is the judge?"
+      },
+      {
+        "argumentRole": "Plaintiff",
+        "question": "What is the plaintiff?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Justice.Arrest-Jail",
+    "questionTemplate": [
+      {
+        "argumentRole": "Person",
+        "question": "Who is jailed?"
+      },
+      {
+        "argumentRole": "Agent",
+        "question": "Who is the jailor?"
+      },
+      {
+        "argumentRole": "place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Justice.Charge-Indict",
+    "questionTemplate": [
+      {
+        "argumentRole": "Adjudicator",
+        "question": "What is the judge?"
+      },
+      {
+        "argumentRole": "Defendant",
+        "question": "Who is the defendant?"
+      },
+      {
+        "argumentRole": "Prosecutor",
+        "question": "Who is the prosecuting agent?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Justice.Convict",
+    "questionTemplate": [
+      {
+        "argumentRole": "Defendant",
+        "question": "Who is the defendant?"
+      },
+      {
+        "argumentRole": "Adjudicator",
+        "question": "What is the judge?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Justice.Execute",
+    "questionTemplate": [
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      },
+      {
+        "argumentRole": "Agent",
+        "question": "Who carry out the execution?"
+      },
+      {
+        "argumentRole": "Person",
+        "question": "Who was executed?"
+      }
+    ]
+  },
+  {
+    "event": "Justice.Extradite",
+    "questionTemplate": [
+      {
+        "argumentRole": "Origin",
+        "question": "What is original location of the person being extradited?"
+      },
+      {
+        "argumentRole": "Destination",
+        "question": "Where the person is extradited to?"
+      },
+      {
+        "argumentRole": "Agent",
+        "question": "Who is the extraditing agent?"
+      }
+    ]
+  },
+  {
+    "event": "Justice.Fine",
+    "questionTemplate": [
+      {
+        "argumentRole": "Entity",
+        "question": "What is fined?"
+      },
+      {
+        "argumentRole": "Adjudicator",
+        "question": "What is the judge?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Justice.Pardon",
+    "questionTemplate": [
+      {
+        "argumentRole": "Adjudicator",
+        "question": "What is the judge?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      },
+      {
+        "argumentRole": "Defendant",
+        "question": "Who is the defendant?"
+      }
+    ]
+  },
+
+  {
+    "event": "Movement.Transport",
+    "questionTemplate": [
+      {
+        "argumentRole": "Vehicle",
+        "question": "What is the vehicle used?"
+      },
+      {
+        "argumentRole": "Artifact",
+        "question": "What is being transported?"
+      },
+      {
+        "argumentRole": "Destination",
+        "question": "Where the transporting is directed?"
+      },
+      {
+        "argumentRole": "Agent",
+        "question": "Who is responsible for the transport event?"
+      },
+      {
+        "argumentRole": "Origin",
+        "question": "Where the transporting originated?"
+      }
+    ]
+  },
+  {
+    "event": "Personnel.Elect",
+    "questionTemplate": [
+      {
+        "argumentRole": "Person",
+        "question": "Who is elected?"
+      },
+      {
+        "argumentRole": "Entity",
+        "question": "Who voted?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Transaction.Transfer-Money",
+    "questionTemplate": [
+      {
+        "argumentRole": "Giver",
+        "question": "Who is the donating agent?"
+      },
+      {
+        "argumentRole": "Recipient",
+        "question": "Who is the recipient?"
+      },
+      {
+        "argumentRole": "Beneficiary",
+        "question": "Who benefits from the transfer?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      }
+    ]
+  },
+  {
+    "event": "Transaction.Transfer-Ownership",
+    "questionTemplate": [
+      {
+        "argumentRole": "Buyer",
+        "question": "Who is the buying agent?"
+      },
+      {
+        "argumentRole": "Artifact",
+        "question": "What was bought?"
+      },
+      {
+        "argumentRole": "Seller",
+        "question": "Who is the selling agent?"
+      },
+      {
+        "argumentRole": "Place",
+        "question": "Where the event takes place?"
+      },
+      {
+        "argumentRole": "Beneficiary",
+        "question": "Who benefits from the transaction?"
+      }
+    ]
+  }
+]

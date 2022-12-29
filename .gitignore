@@ -1,0 +1,4 @@
+node_modules/
+flask_server/lib/
+/config/default.json
+/client/node_modules
