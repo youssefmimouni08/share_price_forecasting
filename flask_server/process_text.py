@@ -1,5 +1,4 @@
-import requests
-import conllu
+
 import openai
 import json
 import re
@@ -10,7 +9,7 @@ with open('../config/default.json', 'r') as file:
 
 # Access the value you want
 value = data['openai_key']
-print(value)
+
 # Set the OpenAI API key
 openai.api_key = value
 
@@ -50,7 +49,7 @@ def list_events(sentence):
     dependency_tree = parsed_sentence[0]
     print('dependency_tree: ',dependency_tree)
     return dependency_tree"""
-def process_text( text):
+"""def process_text( text):
     # Set the URL of the Stanford CoreNLP server
     server_url = "http://localhost:9000"
     # Set the properties for the server
@@ -85,4 +84,4 @@ def process_text( text):
         
         return collnn_tags
     else:
-        print("An error occurred:", response.status_code)
+        print("An error occurred:", response.status_code)"""

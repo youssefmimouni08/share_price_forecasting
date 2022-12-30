@@ -6,13 +6,19 @@ import {
   TrendingDownIcon,
   AdjustmentsIcon,
 } from "@heroicons/react/outline";
-import { createPrediction, setLoading } from "../redux/actions/forecast";
+import {
+  createPrediction,
+  setLoading,
+  savePrediction,
+} from "../redux/actions/forecast";
 import { connect } from "react-redux";
 import SwitchButton from "./ui/switchButton";
 import ArgumentDetails from "./ui/argumentDetails";
 import Loading from "./ui/Loading";
+import Button from "./ui/Button";
 const Form = ({
   createPrediction,
+  savePrediction,
   setLoading,
   forecast_result,
   user,
@@ -21,6 +27,7 @@ const Form = ({
   const [formData, setFormData] = useState({
     paragraph: "",
   });
+
   //const [result_loading, setLoading] = useState(false);
   const { paragraph } = formData;
   const onChange = (e) => {
@@ -31,8 +38,15 @@ const Form = ({
     createPrediction(paragraph);
     setLoading(true);
   };
+  const saveButton = (obj) => {
+    savePrediction(obj);
+    alert("Button was clicked");
+  };
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full ">
       <p className="w-full py-12 px-10 text-center">
         Notice : the sentence should have a country as subject, a verb and an
         object (country or an object).
@@ -87,31 +101,45 @@ const Form = ({
 
       {!loading ? (
         forecast_result &&
-        forecast_result.map((obj, id) => (
-          <div
-            key={obj.context}
-            className="bg-gray-100 mx-12 sm:mx-16 lg:mx-36 xl:mx-64 flex flex-col border-2  p-4 mb-8 rounded-xl space-y-4 shadow-xl"
-          >
-            <div className="flex flex-col md:flex-row space-x-2 justify-between items-start">
-              <div className="space-y-2 w-3/4">
-                <p>This event "{obj.event}" is going to have an impact of</p>
+        forecast_result.map((obj, id) => {
+          // Declare a state variable called "isButtonDisabled" and set it to false
+
+          return (
+            <div
+              key={obj.context}
+              className="bg-gray-100 mx-12 sm:mx-16 lg:mx-36 xl:mx-64 flex flex-col border-2  p-4 mb-8 rounded-xl space-y-4 shadow-xl"
+            >
+              <div className="flex flex-col md:flex-row space-x-2 justify-between items-start">
+                <div className="space-y-2 w-3/4">
+                  <p>
+                    This event "{obj.event}" is going to have an impact of is
+                    going to have an impact ofis going to have an impact ofis
+                    going to have an impact of
+                  </p>
+                  <Button
+                    // Pass the state variable and the function to disable the button as props
+
+                    obj={obj}
+                  />
+                </div>
+                <div className="flex space-x-2 justify-between items-center w-2/4 md:w-1/4 xl:w-1/5 bg-white p-5 rounded-md font-bold shadow-md">
+                  {obj.event_impact > 0 ? (
+                    <div className="p-1 bg-green-200 text-green-600 w-8 md:w-10">
+                      <TrendingUpIcon className=" h-6 md:h-8 " />
+                    </div>
+                  ) : (
+                    <div className="p-1 bg-red-200 text-red-600 w-8 md:w-10">
+                      <TrendingDownIcon className=" h-6 md:h-8" />
+                    </div>
+                  )}
+                  <p className=" text-black  ">{obj.event_impact} %</p>
+                </div>
               </div>
-              <div className="flex space-x-2 justify-between items-center w-2/4 md:w-1/4 xl:w-1/5 bg-white p-5 rounded-md font-bold shadow-md">
-                {obj.event_impact > 0 ? (
-                  <div className="p-1 bg-green-200 text-green-600 w-8 md:w-10">
-                    <TrendingUpIcon className=" h-6 md:h-8 " />
-                  </div>
-                ) : (
-                  <div className="p-1 bg-red-200 text-red-600 w-8 md:w-10">
-                    <TrendingDownIcon className=" h-6 md:h-8" />
-                  </div>
-                )}
-                <p className=" text-black  ">{obj.event_impact}</p>
-              </div>
+
+              <ArgumentDetails id={id} description={obj} role={user.role} />
             </div>
-            <ArgumentDetails id={id} description={obj} role={user.role} />
-          </div>
-        ))
+          );
+        })
       ) : (
         <Loading />
       )}
@@ -130,4 +158,8 @@ const mapStateToProps = (state) => ({
   forecast: state.forecast,
 });
 
-export default connect(mapStateToProps, { createPrediction, setLoading })(Form);
+export default connect(mapStateToProps, {
+  createPrediction,
+  setLoading,
+  savePrediction,
+})(Form);

@@ -1,14 +1,11 @@
 from flask import Flask, jsonify, request
 import requests
-from trigger_identification import identify_triggers
-
+from trigger_identification import identify_triggers , number_triggers
 from process_text import list_events
 from impactCalculator import impactCalculator
 
 import pandas as pd
-
 import spacy
-
 import mlconjug3
 import json
 from transformers import  pipeline
@@ -59,7 +56,7 @@ def fetch_ent(text):
 def multiple_question_answering(paragraph):
     all_results = []
     events = []
-    triggers  = identify_triggers(paragraph)
+    triggers  = number_triggers(paragraph)
     print(triggers)
     if len(triggers)>1:
         print(len(triggers))
@@ -225,21 +222,15 @@ app = Flask(__name__)
 
 @app.route('/', methods = ['POST','GET'])
 def home():
-    
     request_data = request.get_json()
     context = request_data['context']
-    
-    data = question_answering(context)
-    
+    data = context
     return data
 @app.route('/paragraph', methods = ['POST'])
 def paragraph():
-    
     request_data = request.get_json()
     paragraph = request_data['context']
-
     data = multiple_question_answering(paragraph)
-    
     return data
 @app.route('/flask', methods = ['GET','POST'])
 def index():

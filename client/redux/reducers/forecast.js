@@ -6,6 +6,7 @@ import {
   ADJUST_TRIGGER_WEIGHT,
   ADJUST_ACTEUR_WEIGHT,
   SET_LOADING,
+  SAVE_PREDICTION,
 } from "../types";
 
 const initialState = {
@@ -61,6 +62,10 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: payload,
+      };
+    case SAVE_PREDICTION:
+      return {
+        ...state,
       };
     default:
       return state;

@@ -8,7 +8,7 @@ with open('../config/default.json', 'r') as file:
 
 # Access the value you want
 value = data['openai_key']
-print(value)
+
 # Set the OpenAI API key
 openai.api_key = value
 

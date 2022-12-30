@@ -7,6 +7,7 @@ import {
   FORECAST_ERROR,
   GET_FORECAST,
   GET_NEW_PREDICTION,
+  SAVE_PREDICTION,
   SET_LOADING,
 } from "../types";
 
@@ -31,7 +32,36 @@ export const setLoading = (loading) => async (dispatch) => {
     payload: loading,
   });
 };
+export const savePrediction = (predictionObject) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    console.log(predictionObject);
 
+    const body = {
+      prediction: predictionObject,
+    };
+
+    const res = await axios.post(
+      "http://localhost:5000/savePrediction",
+      body,
+      config
+    );
+
+    dispatch({
+      type: SAVE_PREDICTION,
+      //payload: loading,
+    });
+  } catch (err) {
+    dispatch({
+      type: FORECAST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 export const createPrediction = (formData) => async (dispatch) => {
   try {
     const config = {
@@ -58,7 +88,7 @@ export const createPrediction = (formData) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: FORECAST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      //payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };

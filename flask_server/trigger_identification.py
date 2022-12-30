@@ -1,8 +1,7 @@
 import nltk
 from nltk.corpus import wordnet
-from nltk.tag import pos_tag
-import spacy
-from nltk.parse import DependencyGraph
+
+from nltk.stem import WordNetLemmatizer
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
@@ -10,7 +9,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from bs4  import BeautifulSoup
 from transformers import  pipeline
-from process_text import process_text
 import requests
 import json
 
@@ -23,9 +21,16 @@ options.add_argument("--headless")
 options.add_argument("--disable-extensions")
 options.add_argument("--disable-gpu")
 
+
+def find_verb(verb):
+    lemmatizer = WordNetLemmatizer()
+    base_form = lemmatizer.lemmatize(verb, pos='v')
+    return str(base_form)
+
+
 def verbix(verb):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
-    driver.get("https://www.verbix.com/find-verb/"+str(verb))
+    driver.get("http://www.verbix.com/find-verb/"+str(verb))
     
     content = driver.page_source
     soup = BeautifulSoup(content, 'html.parser')
@@ -42,7 +47,7 @@ def verbix(verb):
 
 
 
-def classify_trigger(trigger):
+"""def classify_trigger(trigger):
   # Get the wordnet synset for the trigger word
    
     if  wordnet.synset(trigger+'.'+wordnet.VERB+'.01' ):
@@ -60,7 +65,7 @@ def classify_trigger(trigger):
         event_type = hypernym.lemmas()[0].name().split('.')[0]    
         return event_type
     else:
-        return hypernym
+        return hypernym"""
 
 
 
@@ -74,6 +79,29 @@ def is_verb(word):
 
 
 def identify_triggers(sentence):
+    tokens = nltk.word_tokenize(sentence)
+    pos_tags = nltk.pos_tag(tokens)
+    findverb=""
+    # Send a request to the Stanford CoreNLP server
+    r = requests.post('http://localhost:9000/',
+                      params={'annotators': 'parse', 'outputFormat': 'json'},
+                      data=sentence)
+    # Parse the response as a JSON object
+    response = json.loads(r.text)
+    # Extract the main triggers from the dependency parse
+    triggers = []
+    for word in response['sentences'][0]['basicDependencies']:
+        if word['dep'] == 'ROOT' :
+            if is_verb(word['dependentGloss']):  
+                triggers.append((word['dependentGloss'],find_verb(word['dependentGloss'])))
+    for word, pos in pos_tags:
+        findverb = find_verb(str(word))
+        if pos == "VBD" and (word, findverb) not in triggers:
+            triggers.append((word, findverb))
+    return triggers
+
+
+def number_triggers(sentence):
 
     tokens = nltk.word_tokenize(sentence)
 
@@ -83,29 +111,19 @@ def identify_triggers(sentence):
     r = requests.post('http://localhost:9000/',
                       params={'annotators': 'parse', 'outputFormat': 'json'},
                       data=sentence)
-    
     # Parse the response as a JSON object
     response = json.loads(r.text)
-    
     # Extract the main triggers from the dependency parse
     triggers = []
     for word in response['sentences'][0]['basicDependencies']:
         if word['dep'] == 'ROOT' :
             if is_verb(word['dependentGloss']):  
-                triggers.append((word['dependentGloss'],verbix(word['dependentGloss'])))
+                triggers.append((word['dependentGloss']))
     for word, pos in pos_tags:
-        if pos == "VBD" and (word, verbix(str(word))) not in triggers:
-            triggers.append((word, verbix(str(word))))
+        if pos == "VBD" and (word) not in triggers:
+            triggers.append((word))
     print("Event triggers found: ",triggers)
     return triggers
 
-# Test the function
-sentence = "As part of the 11-billion-dollar sale of USA Interactive's film and television operations to the French company and its parent company in December 2001, USA Interactive received 2.5 billion dollars in preferred shares in Vivendi Universal Entertainment"
-#print(get_main_trigger(sentence))  # Output: ['sat']
-
-text = "Russian Federation attacked Fresh Attacks On Ukraine's Energy Infrastructure"
-#print(get_main_trigger(text))  # Output: ['sat']
 
 
-    #triggers = [(token, classify_trigger(verbix(token))) for token, pos in pos_tags if pos == 'VBD']
-    #for token, pos in pos_tags :
