@@ -14,6 +14,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         all_events: payload,
+        eventDetail: null,
         loading: false,
       };
     case GET_EVENT:

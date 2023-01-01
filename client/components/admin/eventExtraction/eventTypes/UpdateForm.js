@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const UpdateForm = ({ data }) => {
   const [event, setEvent] = useState(data.event);
@@ -33,39 +34,55 @@ const UpdateForm = ({ data }) => {
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3">
+          <div className="w-full space-y-5 px-3">
             <label
               className="block uppercase tracking-wide  text-xs font-bold mb-2"
               htmlFor="questions"
             >
-              Questions
+              Questions Template
             </label>
             {questions.map((question, index) => (
-              <div key={index} className="my-3">
-                <input
-                  className="appearance-none block w-full bg-gray-400 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                  id={`argumentRole-${index}`}
-                  type="text"
-                  placeholder="Argument Role"
-                  value={question.argumentRole}
-                  onChange={(e) => {
-                    const updatedQuestions = [...questions];
-                    updatedQuestions[index].argumentRole = e.target.value;
-                    setQuestions(updatedQuestions);
-                  }}
-                />
-                <input
-                  className="appearance-none block w-full bg-gray-400 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                  id={`question-${index}`}
-                  type="text"
-                  placeholder="Question"
-                  value={question.question}
-                  onChange={(e) => {
-                    const updatedQuestions = [...questions];
-                    updatedQuestions[index].question = e.target.value;
-                    setQuestions(updatedQuestions);
-                  }}
-                />
+              <div key={index} className="space-y-2">
+                <div className="flex whitespace-nowrap space-x-5  items-center ">
+                  <label
+                    className="text-xs font-bold w-1/3"
+                    htmlFor="argumentRole"
+                  >
+                    Argument Role
+                  </label>
+                  <input
+                    className="appearance-none block w-full bg-gray-400 text-gray-700 border rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
+                    id={`argumentRole-${index}`}
+                    type="text"
+                    placeholder="Argument Role"
+                    value={question.argumentRole}
+                    onChange={(e) => {
+                      const updatedQuestions = [...questions];
+                      updatedQuestions[index].argumentRole = e.target.value;
+                      setQuestions(updatedQuestions);
+                    }}
+                  />
+                </div>
+                <div className="flex whitespace-nowrap space-x-5 items-center">
+                  <label
+                    className="  text-xs font-bold w-1/3"
+                    htmlFor="question"
+                  >
+                    Question
+                  </label>
+                  <input
+                    className="appearance-none block w-full bg-gray-400 text-gray-700 border rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
+                    id={`question-${index}`}
+                    type="text"
+                    placeholder="Question"
+                    value={question.question}
+                    onChange={(e) => {
+                      const updatedQuestions = [...questions];
+                      updatedQuestions[index].question = e.target.value;
+                      setQuestions(updatedQuestions);
+                    }}
+                  />
+                </div>
               </div>
             ))}
           </div>
