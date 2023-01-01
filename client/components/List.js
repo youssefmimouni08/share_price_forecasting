@@ -9,7 +9,7 @@ const List = ({ getMyPredictions, auth, myPredictions, loading }) => {
     getMyPredictions();
   }, []);
   return (
-    <div className="container flex justify-center mx-auto my-20">
+    <div className="font-mono container flex justify-center mx-auto my-20">
       <div
         className="
           overflow-x-auto relative shadow-md rounded-lg"

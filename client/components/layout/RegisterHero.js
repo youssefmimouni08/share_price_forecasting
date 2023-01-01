@@ -5,7 +5,7 @@ import Signup from "../Signup";
 
 const RegisterHero = () => {
   return (
-    <div className="flex flex-col p-12 md:pt-20 bg-gray-200 h-screen items-center justify-center">
+    <div className="font-mono flex flex-col p-12 md:pt-20 bg-gray-200 h-screen items-center justify-center">
       <Alert />
       <Signup />
     </div>

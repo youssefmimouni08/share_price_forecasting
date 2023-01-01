@@ -108,8 +108,8 @@ def multiple_question_answering(paragraph):
         else : 
             res['trigger_verb'] = {"name" : str(trigger),"weight":'null','event_type':'null'}
             
-            questions.append({"question":"who is responsible of the"+conjugated_verb_ing+"?","argumentRole":"acteur"})
-            questions.append({"question" : "Who is the subject of the "+conjugated_verb_ing+"  ?","argumentRole" :"object"})
+            questions.append({"question":"who is responsible of the "+conjugated_verb_ing+"?","argumentRole":"acteur"})
+            questions.append({"question" : "what got "+conjugated_verb+"  ?","argumentRole" :"object"})
             #questions.append({"question" : "what got damaged?","argumentRole" :"victim"})
         
         

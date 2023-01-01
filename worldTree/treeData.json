@@ -1,5 +1,6 @@
 {
-  "name": "Top Level",
+  "name": "World",
+  "oilProduction": "100%",
   "children": [
     {
       "_id": "634324bd4f816de80b76f3e3",

@@ -135,7 +135,7 @@ function Header({ auth: { isAuthenticated, loading }, logout }) {
     </>
   );
   return (
-    <header className="bg-white top-0 z-50 grid grid-cols-2  shadow-md py-5 px-5 md:px-10">
+    <header className="font-mono bg-white top-0 z-50 grid grid-cols-2  shadow-md py-5 px-5 md:px-10">
       <Link
         href="/"
         className="relative flex items-center h-5 cursor-pointer my-auto "

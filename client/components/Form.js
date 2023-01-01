@@ -46,7 +46,7 @@ const Form = ({
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   return (
-    <div className="flex flex-col w-full ">
+    <div className="font-mono flex flex-col w-full ">
       <p className="w-full py-12 px-10 text-center">
         Notice : the sentence should have a country as subject, a verb and an
         object (country or an object).

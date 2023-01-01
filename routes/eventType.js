@@ -1,6 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const Event_type = require("../models/EventType");
+router.get("/event_types/:id", async (req, res) => {
+  try {
+    const event_type = await Event_type.findById(req.params.id);
+    res.json(event_type);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.get("/event_types", async (req, res) => {
   try {
     const event_types = await Event_type.find();

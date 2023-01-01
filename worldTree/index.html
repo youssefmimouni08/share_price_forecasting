@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <meta charset="UTF-8" />
 <style>
+  body {
+  }
   .node circle {
     fill: #fff;
     stroke: steelblue;
     stroke-width: 3px;
+    color: aliceblue;
   }
 
   .node text {
     font: 12px sans-serif;
+    color: aliceblue;
   }
 
   .link {
     fill: none;
     stroke: #ccc;
     stroke-width: 2px;
+    color: aliceblue;
   }
 </style>
 
@@ -207,7 +212,7 @@
 
       // Creates a curved (diagonal) path from parent to the child nodes
       function diagonal(s, d) {
-        path = `M ${s.y} ${s.x}
+        let path = `M ${s.y} ${s.x}
             C ${(s.y + d.y) / 2} ${s.x},
               ${(s.y + d.y) / 2} ${d.x},
               ${d.y} ${d.x}`;
