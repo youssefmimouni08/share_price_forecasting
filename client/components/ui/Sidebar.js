@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch, connect } from "react-redux";
 
 import {
   ChevronDoubleLeftIcon,
@@ -19,10 +20,11 @@ import {
   CubeTransparentIcon,
 } from "@heroicons/react/solid";
 import Submenu from "./Submenu";
-
-const Sidebar = () => {
+import { setSelectedMenuItem } from "../../redux/actions/submenu";
+const Sidebar = ({ setSelectedMenuItem, submenu: { selectedMenuItem } }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedMenuItem, setSelectedMenuItem] = useState("");
+
+  //const [selectedMenuItem, setSelectedMenuItem] = useState("");
 
   function toggleMenu() {
     setIsOpen(!isOpen);
@@ -54,11 +56,11 @@ const Sidebar = () => {
             >
               {isOpen ? (
                 <>
-                  <UserCircleIcon className="h-6 mr-2" />
+                  <IdentificationIcon className="h-6 mr-2" />
                   Manage users
                 </>
               ) : (
-                <UserCircleIcon className="h-6" />
+                <IdentificationIcon className="h-6" />
               )}
             </li>
             <li
@@ -104,11 +106,6 @@ const Sidebar = () => {
               label: "Add Users",
               path: "/admin/users/add",
             },
-            {
-              icon: <IdentificationIcon className="h-6 mr-2" />,
-              label: "Grant Privilges",
-              path: "/admin/users/detail",
-            },
           ]}
           closeSubmenu={closeSubmenu}
         />
@@ -126,15 +123,16 @@ const Sidebar = () => {
               label: "View continents",
               path: "/admin/worldData/Continents/",
             },
-            {
-              icon: <FlagIcon className="h-6 mr-2" />,
-              label: "View countries",
-              path: "/admin/worldData/Countries/",
-            },
+
             {
               icon: <CogIcon className="h-6 mr-2" />,
               label: "View regions",
               path: "/admin/worldData/Regions/",
+            },
+            {
+              icon: <FlagIcon className="h-6 mr-2" />,
+              label: "View countries",
+              path: "/admin/worldData/Countries/",
             },
             {
               icon: <LibraryIcon className="h-6 mr-2" />,
@@ -185,5 +183,7 @@ const Sidebar = () => {
     </div>
   );
 };
-
-export default Sidebar;
+const mapStateToProps = (state) => ({
+  submenu: state.submenu,
+});
+export default connect(mapStateToProps, { setSelectedMenuItem })(Sidebar);

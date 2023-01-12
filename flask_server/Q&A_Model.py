@@ -104,8 +104,13 @@ def multiple_question_answering(paragraph):
             
             
             res['trigger_verb'] = {"name" : str(trigger),"weight":content['weight'],'event_type':content['event_type']['event']}
-    
-        else : 
+        elif (content != 'null' and 'weight' in content):
+            content = json.loads(content)
+            res['trigger_verb'] = {"name" : str(trigger),"weight":content['weight'],'event_type':'null'}
+            
+            questions.append({"question":"who is responsible of the "+conjugated_verb_ing+"?","argumentRole":"acteur"})
+            questions.append({"question" : "what got "+conjugated_verb+"  ?","argumentRole" :"object"})
+        elif (content == 'null'): 
             res['trigger_verb'] = {"name" : str(trigger),"weight":'null','event_type':'null'}
             
             questions.append({"question":"who is responsible of the "+conjugated_verb_ing+"?","argumentRole":"acteur"})

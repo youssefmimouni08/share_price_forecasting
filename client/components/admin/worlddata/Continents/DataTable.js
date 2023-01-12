@@ -1,16 +1,13 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { getAllUsers, getUserDetails } from "../../../redux/actions/user";
-import Loading from "../../ui/Loading";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import Loading from "../../../ui/Loading";
 
-const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
-  useEffect(() => {
-    getAllUsers();
-  }, []);
+const DataTable = ({ data }) => {
+  const loading = useSelector((state) => state.worlddata.loading);
 
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(10);
+  const [perPage, setPerPage] = useState(6);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
 
@@ -23,7 +20,7 @@ const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
     }
   };
 
-  const sortedData = all_users.sort((a, b) => {
+  const sortedData = data.sort((a, b) => {
     if (sortDirection === "asc") {
       return a[sortColumn] > b[sortColumn] ? 1 : -1;
     } else {
@@ -33,48 +30,57 @@ const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
 
   const startIndex = (page - 1) * perPage;
   const paginatedData = sortedData.slice(startIndex, startIndex + perPage);
-
   return (
-    <div className="bg-gray-200 w-full h-full rounded-2xl shadow-lg p-10 flex justify-center items-start">
+    <>
       <table className="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
         <thead className="text-xs rounded-2xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th
               className="px-6 py-3 cursor-pointer"
-              onClick={() => handleSort("name")}
+              onClick={() => handleSort("code")}
             >
-              Name
-              {sortColumn === "name" && (
+              Code
+              {sortColumn === "code" && (
                 <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
               )}
             </th>
             <th
               className="px-6 py-3 cursor-pointer"
-              onClick={() => handleSort("email")}
+              onClick={() => handleSort("continent")}
             >
-              Email
-              {sortColumn === "email" && (
+              Continent Name
+              {sortColumn === "continent" && (
                 <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
               )}
             </th>
             <th
               className="px-6 py-3 cursor-pointer"
-              onClick={() => handleSort("role")}
+              onClick={() => handleSort("oilProduction")}
             >
-              Role
-              {sortColumn === "role" && (
+              Oil Production
+              {sortColumn === "oilProduction" && (
                 <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
               )}
             </th>
             <th
               className="px-6 py-3 cursor-pointer"
-              onClick={() => handleSort("date")}
+              onClick={() => handleSort("borders")}
             >
-              Date
-              {sortColumn === "date" && (
+              Borders
+              {sortColumn === "borders" && (
                 <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
               )}
             </th>
+            <th
+              className="px-6 py-3 cursor-pointer"
+              onClick={() => handleSort("relation")}
+            >
+              Relation Rate
+              {sortColumn === "relation" && (
+                <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
+              )}
+            </th>
+
             <th className="px-6 py-3">Update</th>
             <th className="px-6 py-3">Delete</th>
           </tr>
@@ -87,14 +93,31 @@ const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
                 className="bg-white  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
                 <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {row.name}
+                  {row.CODE}
                 </td>
-                <td className="py-4 px-6">{row.email}</td>
-                <td className="py-4 px-6">{row.role}</td>
-                <td className="py-4 px-6">{row.date}</td>
+                <td className="py-4 px-6 ">{row.CONTINENT_NAME}</td>
+                <td className="py-4 px-6 font-medium whitespace-nowrap ">
+                  {row.oilProduction}
+                </td>
+
+                <td className="py-4 px-6">
+                  {row.VOISINS.map((a) => (
+                    <>
+                      {a.ContinentID.CONTINENT_NAME} <br />
+                    </>
+                  ))}
+                </td>
+                <td className="py-4 px-6">
+                  {row.VOISINS.map((a) => (
+                    <>
+                      {a.impact} <br />
+                    </>
+                  ))}
+                </td>
+
                 <td className="py-4 px-6">
                   <Link
-                    href={`users/${row._id}`}
+                    href={`Continents/${row._id}`}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Update
@@ -102,7 +125,7 @@ const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
                 </td>
                 <td className="py-4 px-6">
                   <button
-                    onClick={() => onDelete(row.id)}
+                    onClick={() => onDelete(row._id)}
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Delete
@@ -112,12 +135,24 @@ const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
             ))}
         </tbody>
       </table>
-    </div>
+      <div className="my-4 flex justify-between">
+        <button
+          onClick={() => setPage(page - 1)}
+          disabled={page === 1}
+          className="btn"
+        >
+          Previous
+        </button>
+        <button
+          onClick={() => setPage(page + 1)}
+          disabled={page * perPage >= data.length}
+          className="btn"
+        >
+          Next
+        </button>
+      </div>
+    </>
   );
 };
-const mapStateToProps = (state) => ({
-  users: state.users,
-});
-export default connect(mapStateToProps, { getAllUsers, getUserDetails })(
-  ListUsers
-);
+
+export default DataTable;

@@ -97,7 +97,8 @@ def identify_triggers(sentence):
     for word, pos in pos_tags:
         findverb = find_verb(str(word))
         if pos == "VBD" and (word, findverb) not in triggers:
-            triggers.append((word, findverb))
+            if find_verb not in ['do','have']:
+                triggers.append((word, findverb))
     return triggers
 
 
@@ -121,7 +122,8 @@ def number_triggers(sentence):
                 triggers.append((word['dependentGloss']))
     for word, pos in pos_tags:
         if pos == "VBD" and (word) not in triggers:
-            triggers.append((word))
+            if find_verb(str(word)) not in ['do','have']:
+                triggers.append((word))
     print("Event triggers found: ",triggers)
     return triggers
 

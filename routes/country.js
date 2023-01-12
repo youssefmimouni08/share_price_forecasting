@@ -4,7 +4,10 @@ const Country = require("../models/Country");
 
 router.get("/Countries", async (req, res) => {
   try {
-    const countries = await Country.find();
+    const countries = await Country.find().populate({
+      path: "VOISINS.CountryID",
+      model: Country,
+    });
     res.json(countries);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -7,21 +7,40 @@ import {
   LoginIcon,
   LogoutIcon,
   UserAddIcon,
+  ChipIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../redux/actions/auth";
 import { Fragment, useState } from "react";
-function Header({ auth: { isAuthenticated, loading }, logout }) {
+function Header({ auth: { isAuthenticated, loading, user }, logout }) {
   const [display, setDisplay] = useState(false);
 
   const toggle = () => {
     setDisplay(!display);
   };
+  const adminLink = (
+    <Link
+      href="/admin"
+      className="flex space-x-2 items-center cursor-pointer py-2 px-4 hover:bg-[#ddd]"
+    >
+      <PresentationChartLineIcon className="h-6 " />
+      <p>Admin Dashboard</p>
+    </Link>
+  );
   const authLinks = (
     <>
       <div className=" hidden md:inline-flex space-x-6">
+        {user && user.role == "admin" && (
+          <Link
+            href="/admin"
+            className="flex space-x-2 items-center cursor-pointer py-2 px-4 hover:bg-[#ddd]"
+          >
+            <ChipIcon className="h-6 " />
+            <p>Admin Dashboard</p>
+          </Link>
+        )}
         <Link
           href="/forecast"
           className="flex space-x-2 items-center cursor-pointer py-2 px-4 hover:bg-[#ddd]"
@@ -136,19 +155,20 @@ function Header({ auth: { isAuthenticated, loading }, logout }) {
   );
   return (
     <header className="font-mono bg-white top-0 z-50 grid grid-cols-2  shadow-md py-5 px-5 md:px-10">
-      <Link
-        href="/"
-        className="relative flex items-center h-5 cursor-pointer my-auto "
-        style={{ width: "50%" }}
-      >
-        <Image
-          src={logo}
-          layout="fill"
-          objectFit="contain"
-          objectPosition="left"
-        />
-      </Link>
-
+      <div className="flex">
+        <Link
+          href="/"
+          className="relative flex items-center h-5 cursor-pointer my-auto "
+          style={{ width: "50%" }}
+        >
+          <Image
+            src={logo}
+            layout="fill"
+            objectFit="contain"
+            objectPosition="left"
+          />
+        </Link>
+      </div>
       <div className="flex items-center justify-end  whitespace-nowrap text-xl">
         {!loading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

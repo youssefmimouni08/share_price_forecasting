@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../../../ui/Loading";
 
-const Table = ({ data }) => {
-  const loading = useSelector((state) => state.events.loading);
+const DataTable = ({ data }) => {
+  const loading = useSelector((state) => state.worlddata.loading);
 
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(4);
+  const [perPage, setPerPage] = useState(6);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
 
@@ -37,28 +37,55 @@ const Table = ({ data }) => {
           <tr>
             <th
               className="px-6 py-3 cursor-pointer"
-              onClick={() => handleSort("event")}
+              onClick={() => handleSort("code")}
             >
-              Event Type
-              {sortColumn === "event" && (
+              Province Code
+              {sortColumn === "code" && (
                 <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
               )}
             </th>
             <th
               className="px-6 py-3 cursor-pointer"
-              onClick={() => handleSort("argument")}
+              onClick={() => handleSort("province")}
             >
-              Argument Role
-              {sortColumn === "argument" && (
+              Province Name
+              {sortColumn === "province" && (
                 <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
               )}
             </th>
             <th
               className="px-6 py-3 cursor-pointer"
-              onClick={() => handleSort("question")}
+              onClick={() => handleSort("country")}
             >
-              Question
-              {sortColumn === "question" && (
+              Country Code
+              {sortColumn === "country" && (
+                <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
+              )}
+            </th>
+            <th
+              className="px-6 py-3 cursor-pointer"
+              onClick={() => handleSort("oilProduction")}
+            >
+              Oil Production
+              {sortColumn === "oilProduction" && (
+                <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
+              )}
+            </th>
+            <th
+              className="px-6 py-3 cursor-pointer"
+              onClick={() => handleSort("borders")}
+            >
+              Borders
+              {sortColumn === "borders" && (
+                <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
+              )}
+            </th>
+            <th
+              className="px-6 py-3 cursor-pointer"
+              onClick={() => handleSort("relation")}
+            >
+              Relation Rate
+              {sortColumn === "relation" && (
                 <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
               )}
             </th>
@@ -75,27 +102,32 @@ const Table = ({ data }) => {
                 className="bg-white  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
                 <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {row.event}
+                  {row.CODE_PROVINCE}
+                </td>
+                <td className="py-4 px-6 ">{row.PROVINCE_NAME}</td>
+                <td className="py-4 px-6 ">{row.COUNTRY_CODE}</td>
+                <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {row.OilProduction}
                 </td>
 
                 <td className="py-4 px-6">
-                  {row.questionTemplate.map((a) => (
+                  {row.VOISINS.map((a) => (
                     <>
-                      {a.argumentRole} <br />
+                      {a.ProvinceID && a.ProvinceID.PROVINCE_NAME} <br />
                     </>
                   ))}
                 </td>
                 <td className="py-4 px-6">
-                  {row.questionTemplate.map((a) => (
+                  {row.VOISINS.map((a) => (
                     <>
-                      {a.question} <br />
+                      {a.impact} <br />
                     </>
                   ))}
                 </td>
 
                 <td className="py-4 px-6">
                   <Link
-                    href={`eventTypes/${row._id}`}
+                    href={`Provinces/${row._id}`}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Update
@@ -103,7 +135,7 @@ const Table = ({ data }) => {
                 </td>
                 <td className="py-4 px-6">
                   <button
-                    onClick={() => onDelete(row.id)}
+                    onClick={() => onDelete(row._id)}
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Delete
@@ -133,4 +165,4 @@ const Table = ({ data }) => {
   );
 };
 
-export default Table;
+export default DataTable;

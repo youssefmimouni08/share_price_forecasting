@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 const UpdateForm = ({ data }) => {
   const [event, setEvent] = useState(data.event);
@@ -13,7 +12,7 @@ const UpdateForm = ({ data }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full h-fit bg-gray-800 p-7 max-w-lg text-white flex flex-col justify-between"
+      className="w-full h-fit bg-gray-800 p-7  text-white flex flex-col justify-between"
     >
       <div>
         <div className="flex flex-wrap -mx-3 mb-6 ">
@@ -41,50 +40,49 @@ const UpdateForm = ({ data }) => {
             >
               Questions Template
             </label>
-            {questions.map((question, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex whitespace-nowrap space-x-5  items-center ">
-                  <label
-                    className="text-xs font-bold w-1/3"
-                    htmlFor="argumentRole"
-                  >
-                    Argument Role
-                  </label>
-                  <input
-                    className="appearance-none block w-full bg-gray-400 text-gray-700 border rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
-                    id={`argumentRole-${index}`}
-                    type="text"
-                    placeholder="Argument Role"
-                    value={question.argumentRole}
-                    onChange={(e) => {
-                      const updatedQuestions = [...questions];
-                      updatedQuestions[index].argumentRole = e.target.value;
-                      setQuestions(updatedQuestions);
-                    }}
-                  />
+            <div className="overflow-x-auto min-w-full flex flex-row flex-wrap  justify-around space-x-4 ">
+              {questions.map((question, index) => (
+                <div key={index} className="space-y-2 w-72 my-5 ">
+                  <div className="flex whitespace-nowrap  space-x-5 justify-between items-center ">
+                    <label
+                      className="text-xs font-bold  "
+                      htmlFor="argumentRole"
+                    >
+                      Argument
+                    </label>
+                    <input
+                      className="appearance-none block w-2/3  bg-gray-400 text-gray-700 border rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
+                      id={`argumentRole-${index}`}
+                      type="text"
+                      placeholder="Argument Role"
+                      value={question.argumentRole}
+                      onChange={(e) => {
+                        const updatedQuestions = [...questions];
+                        updatedQuestions[index].argumentRole = e.target.value;
+                        setQuestions(updatedQuestions);
+                      }}
+                    />
+                  </div>
+                  <div className="flex whitespace-nowrap space-x-5 items-center justify-between">
+                    <label className="  text-xs font-bold " htmlFor="question">
+                      Question
+                    </label>
+                    <input
+                      className="appearance-none block  w-2/3 bg-gray-400 text-gray-700 border rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
+                      id={`question-${index}`}
+                      type="text"
+                      placeholder="Question"
+                      value={question.question}
+                      onChange={(e) => {
+                        const updatedQuestions = [...questions];
+                        updatedQuestions[index].question = e.target.value;
+                        setQuestions(updatedQuestions);
+                      }}
+                    />
+                  </div>
                 </div>
-                <div className="flex whitespace-nowrap space-x-5 items-center">
-                  <label
-                    className="  text-xs font-bold w-1/3"
-                    htmlFor="question"
-                  >
-                    Question
-                  </label>
-                  <input
-                    className="appearance-none block w-full bg-gray-400 text-gray-700 border rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
-                    id={`question-${index}`}
-                    type="text"
-                    placeholder="Question"
-                    value={question.question}
-                    onChange={(e) => {
-                      const updatedQuestions = [...questions];
-                      updatedQuestions[index].question = e.target.value;
-                      setQuestions(updatedQuestions);
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

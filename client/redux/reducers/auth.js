@@ -7,6 +7,8 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
 } from "../types";
+import { Router } from "next/router";
+
 const ISSERVER = typeof window === "undefined";
 let tkn = null;
 if (!ISSERVER) {
@@ -22,6 +24,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
+  let hasRedirected = false;
   switch (type) {
     case USER_LOADED:
       return {
@@ -42,6 +45,8 @@ export default function (state = initialState, action) {
 
     case AUTH_ERROR:
       localStorage.removeItem("token");
+
+      //window.location.href = "/login";
       return {
         ...state,
         token: null,

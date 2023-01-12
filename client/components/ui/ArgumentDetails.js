@@ -78,16 +78,19 @@ const ArgumentDetails = ({
                   <p className="font-bold">{key}</p>
                   <p>{description[key].name}</p>
                   {description[key]["weight"] ? (
-                    <input
-                      type="text"
-                      id={`${key}_weight`}
-                      name={`${key}_weight`}
-                      onChange={handleChange}
-                      aria-label={`${key}_weight`}
-                      className="text-center self-center border border-gray-300  rounded-lg focus:ring-blue-500 focus:border-blue-500 w-24 p-2  "
-                      defaultValue={description[key]["weight"]}
-                      required
-                    />
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="text"
+                        id={`${key}_weight`}
+                        name={`${key}_weight`}
+                        onChange={handleChange}
+                        aria-label={`${key}_weight`}
+                        className="text-center self-center border border-gray-300  rounded-lg focus:ring-blue-500 focus:border-blue-500 w-24 p-2  "
+                        defaultValue={`${description[key]["weight"]} `}
+                        required
+                      />{" "}
+                      <p>%</p>
+                    </div>
                   ) : (
                     <p className="p-2">{description[key]["oil Production"]}</p>
                   )}

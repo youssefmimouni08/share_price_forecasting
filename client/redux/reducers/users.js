@@ -4,7 +4,7 @@ const initialState = {
   all_users: [],
 
   loading: true,
-  user: null,
+  userDetail: null,
   error: {},
 };
 
@@ -15,12 +15,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         all_users: payload,
+        userDetail: null,
         loading: false,
       };
     case GET_USER:
       return {
         ...state,
-        user: payload,
+        userDetail: payload,
         loading: false,
       };
 

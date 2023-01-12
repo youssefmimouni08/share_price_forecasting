@@ -1,9 +1,8 @@
 import Head from "next/head";
 import React, { Fragment } from "react";
-import ListCountries from "../../../../components/admin/worldData/Countries/ListCountries";
+import ListProvinces from "../../../../components/admin/worldData/Provinces/ListProvinces";
 import AdminMenu from "../../../../components/ui/AdminMenu";
 import Sidebar from "../../../../components/ui/Sidebar";
-
 const index = () => {
   return (
     <Fragment>
@@ -15,7 +14,7 @@ const index = () => {
         <Sidebar />
         <div className="flex flex-col w-full space-y-5">
           <AdminMenu />
-          <ListCountries />
+          <ListProvinces />
         </div>
       </div>
     </Fragment>
