@@ -57,10 +57,16 @@ const List = ({ getMyPredictions, auth, myPredictions, loading }) => {
                         </div>
                       </td>
                       <td className=" px-6 py-4 text-sm text-center ">
-                        <input
-                          className="px-4 py-1 text-sm text-black
+                        {prediction.real_impact ? (
+                          <div className="text-sm ">
+                            {prediction.real_impact} %
+                          </div>
+                        ) : (
+                          <input
+                            className="px-4 py-1 text-sm text-black
                          bg-blue-200 rounded-full focus:border-blue-500"
-                        />
+                          />
+                        )}
                       </td>
                       <td className="px-6 py-4 text-center">
                         <a

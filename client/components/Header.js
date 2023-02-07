@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import logo from "../public/Vermeg_logo.png";
 import { SearchIcon, MenuIcon, UserCircleIcon } from "@heroicons/react/solid";
 import {
@@ -35,7 +35,7 @@ function Header({ auth: { isAuthenticated, loading, user }, logout }) {
         {user && user.role == "admin" && (
           <Link
             href="/admin"
-            className="flex space-x-2 items-center cursor-pointer py-2 px-4 hover:bg-[#ddd]"
+            className="flex space-x-2 items-center cursor-pointer py-2 px-4 hover:bg-[#ddd] "
           >
             <ChipIcon className="h-6 " />
             <p>Admin Dashboard</p>
@@ -45,8 +45,8 @@ function Header({ auth: { isAuthenticated, loading, user }, logout }) {
           href="/forecast"
           className="flex space-x-2 items-center cursor-pointer py-2 px-4 hover:bg-[#ddd]"
         >
-          <PresentationChartLineIcon className="h-6 " />
-          <p>Forecast model</p>
+          <ChipIcon className="h-6 " />
+          <p>Impact Calculator</p>
         </Link>
         <Link
           href="/history"

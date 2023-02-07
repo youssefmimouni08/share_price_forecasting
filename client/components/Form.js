@@ -16,6 +16,7 @@ import SwitchButton from "./ui/switchButton";
 import ArgumentDetails from "./ui/argumentDetails";
 import Loading from "./ui/Loading";
 import Button from "./ui/Button";
+import Home from "./Home";
 const Form = ({
   createPrediction,
   savePrediction,
@@ -46,11 +47,13 @@ const Form = ({
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   return (
-    <div className="font-mono flex flex-col w-full ">
-      <p className="w-full py-12 px-10 text-center">
-        Notice : the sentence should have a country as subject, a verb and an
-        object (country or an object).
-      </p>
+    <div className="font-mono flex flex-col w-full p-10">
+      {!forecast_result && (
+        <div className=" self-center w-3/5">
+          <Home />
+        </div>
+      )}
+
       <form
         className=" px-16 sm:px-20 lg:px-56 xl:px-96 flex flex-col md:space-x-5 md:flex-row w-full form "
         onSubmit={(e) => onSubmit(e)}
@@ -61,7 +64,7 @@ const Form = ({
         >
           Event :
         </label>
-        <div className="flex flex-col w-full border space-y-4 border-solid border-gray-300 hover:border-blue-300 px-3 py-3">
+        <div className="flex flex-col w-full border-4 space-y-4 border-solid border-gray-300 hover:border-blue-300 px-3 py-3">
           <textarea
             className="w-full text-base 
            font-normal
@@ -74,15 +77,11 @@ const Form = ({
           m-0 focus:text-gray-700 focus:bg-white focus:border-none focus:outline-none"
             id="Textarea1"
             rows="5"
-            placeholder="Type in the event or list of events separated by ','"
+            placeholder=""
             name="paragraph"
             onChange={(e) => onChange(e)}
           ></textarea>
-          <div className="flex w-full justify-between ">
-            <div className="flex self-center space-x-4 cursor-pointer">
-              <LinkIcon className="h-6 self-start" />
-              <button>Attach file</button>
-            </div>
+          <div className="flex w-full justify-end ">
             <div className="flex item-center space-x-2 justify-center">
               <button
                 type="submit"
@@ -111,11 +110,7 @@ const Form = ({
             >
               <div className="flex flex-col md:flex-row space-x-2 justify-between items-start">
                 <div className="space-y-2 w-3/4">
-                  <p>
-                    This event "{obj.event}" is going to have an impact of is
-                    going to have an impact ofis going to have an impact ofis
-                    going to have an impact of
-                  </p>
+                  <p>This event "{obj.event}" is going to have an impact of</p>
                   <Button
                     // Pass the state variable and the function to disable the button as props
 

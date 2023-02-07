@@ -6,6 +6,8 @@ import users from "./users";
 import events from "./events";
 import submenu from "./submenu";
 import worlddata from "./worlddata";
+import triggers from "./triggers";
+import objects from "./arguments";
 export default combineReducers({
   alert,
   worlddata,
@@ -14,4 +16,6 @@ export default combineReducers({
   users,
   events,
   submenu,
+  triggers,
+  objects,
 });

@@ -41,4 +41,27 @@ router.get("/myPredictions", auth, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+router.get("/UpdatePrediction", auth, async (req, res) => {
+  try {
+    console.log(req.body.id);
+    const myPrediction = await History.findOne({ _id: req.body.id }).populate([
+      {
+        path: "user",
+        model: User,
+        select: "name email",
+      },
+    ]);
+
+    if (!myPrediction) {
+      return res
+        .status(400)
+        .json({ msg: "There is no predictions for this user" });
+    }
+    myPrediction.real_impact = req.body.value;
+    await myPrediction.save();
+    res.json(myPrediction);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 module.exports = router;

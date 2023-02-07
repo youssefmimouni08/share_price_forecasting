@@ -4,10 +4,8 @@ import { useSelector } from "react-redux";
 import Loading from "../../../ui/Loading";
 
 const Table = ({ data }) => {
-  const loading = useSelector((state) => state.events.loading);
-
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(5);
+  const [perPage, setPerPage] = useState(6);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
 
@@ -37,32 +35,22 @@ const Table = ({ data }) => {
           <tr>
             <th
               className="px-6 py-3 cursor-pointer"
-              onClick={() => handleSort("event")}
+              onClick={() => handleSort("Argument")}
             >
-              Event Type
-              {sortColumn === "event" && (
+              Argument
+              {sortColumn === "Argument" && (
                 <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
               )}
             </th>
             <th
               className="px-6 py-3 cursor-pointer"
-              onClick={() => handleSort("argument")}
+              onClick={() => handleSort("weight")}
             >
-              Argument Role
-              {sortColumn === "argument" && (
+              Weight %
+              {sortColumn === "weight" && (
                 <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
               )}
             </th>
-            <th
-              className="px-6 py-3 cursor-pointer"
-              onClick={() => handleSort("question")}
-            >
-              Question
-              {sortColumn === "question" && (
-                <span>{sortDirection === "asc" ? " ▲" : " ▼"}</span>
-              )}
-            </th>
-
             <th className="px-6 py-3">Update</th>
             <th className="px-6 py-3">Delete</th>
           </tr>
@@ -75,27 +63,15 @@ const Table = ({ data }) => {
                 className="bg-white  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
                 <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {row.event}
+                  {row.object}
                 </td>
-
-                <td className="py-4 px-6">
-                  {row.questionTemplate.map((a) => (
-                    <>
-                      {a.argumentRole} <br />
-                    </>
-                  ))}
-                </td>
-                <td className="py-4 px-6">
-                  {row.questionTemplate.map((a) => (
-                    <>
-                      {a.question} <br />
-                    </>
-                  ))}
+                <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {Math.abs(row.weight).toFixed(4)}
                 </td>
 
                 <td className="py-4 px-6">
                   <Link
-                    href={`eventTypes/${row._id}`}
+                    href={`triggers/${row.object}`}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Update

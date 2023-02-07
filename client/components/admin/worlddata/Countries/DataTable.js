@@ -7,7 +7,7 @@ const DataTable = ({ data }) => {
   const loading = useSelector((state) => state.worlddata.loading);
 
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(3);
+  const [perPage, setPerPage] = useState(5);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
 

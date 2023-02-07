@@ -19,8 +19,13 @@ const ArgumentDetails = ({
   const [showDetails, toggleShowDetails] = useState(false);
   const [adjustToggle, setAdjustToggle] = useState(false);
   const [formData, setFormData] = useState({});
+  const [isDisabled, setIsDisabled] = useState(true);
+
   //adjustActeur(description.acteur["name"], acteur_weight);
 
+  const handleClick = () => {
+    setIsDisabled(!isDisabled);
+  };
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -81,6 +86,7 @@ const ArgumentDetails = ({
                     <div className="flex items-center space-x-2">
                       <input
                         type="text"
+                        disabled={isDisabled}
                         id={`${key}_weight`}
                         name={`${key}_weight`}
                         onChange={handleChange}
@@ -97,14 +103,28 @@ const ArgumentDetails = ({
                 </div>
               );
             })}
-
-            <button
-              type="submit"
-              className="flex space-x-1 text-blue-500 cursor-pointer hover:underline hover:text-blue-700 h-fit w-40"
-            >
-              <AdjustmentsIcon className="h-6" />
-              <p className="">Save Adjustments </p>
-            </button>
+            {["superUser", "admin"].includes(role) ? (
+              isDisabled ? (
+                <button
+                  onClick={handleClick}
+                  className="flex space-x-1 text-blue-500 cursor-pointer hover:underline hover:text-blue-700 h-fit w-40"
+                >
+                  <AdjustmentsIcon className="h-6" />
+                  <p className="">Make Adjustments </p>
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  onClick={handleClick}
+                  className="flex space-x-1 text-blue-500 cursor-pointer hover:underline hover:text-blue-700 h-fit w-40"
+                >
+                  <AdjustmentsIcon className="h-6" />
+                  <p className="">Save Adjustments </p>
+                </button>
+              )
+            ) : (
+              ""
+            )}
           </form>
         </div>
       )}

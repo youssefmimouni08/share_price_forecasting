@@ -34,9 +34,9 @@ def impactCalculator(json_obj):
   
     # Iterate over the keys in the JSON object
     for key in json_obj:
-        # Check if the value of the key is a dictionary and if it has an "oil Production" key
+        # Check if the value of the key is a dictionary and if it has a "weight" key
         if isinstance(json_obj[key], dict) and "weight" in json_obj[key]:
-            # If the conditions are met, add the dictionary to the countries array
+            # If the conditions are met, add the dictionary to the objects array
             if json_obj[key] not in objects:
                 objects.append(json_obj[key])
     total_impact = total_oil_rate
