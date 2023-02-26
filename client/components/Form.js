@@ -48,11 +48,7 @@ const Form = ({
 
   return (
     <div className="font-mono flex flex-col w-full p-10">
-      {!forecast_result && (
-        <div className=" self-center w-3/5">
-          <Home />
-        </div>
-      )}
+      {!forecast_result && <div className=" self-center w-3/5"></div>}
 
       <form
         className=" px-16 sm:px-20 lg:px-56 xl:px-96 flex flex-col md:space-x-5 md:flex-row w-full form "

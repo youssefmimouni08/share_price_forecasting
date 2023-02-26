@@ -23,8 +23,17 @@ module.exports = {
         "Segoe UI Symbol",
         "Noto Color Emoji",
       ],
+      display: ["Oswald"],
+      body: ['"Open Sans"'],
+      forum: ["Exo 2", " sans-serif"],
     },
     extend: {
+      backgroundImage: {
+        landing: "url('/rectangle.svg')",
+        blob: "url('/blob.png')",
+        lines: "url('/lines.svg')",
+        mesh: "url('/bg_gradient.svg')",
+      },
       colors: {
         "4650a1": "#4650a1",
         "4a5da9": "#4a5da9",

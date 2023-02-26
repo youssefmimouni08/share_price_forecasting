@@ -15,7 +15,7 @@ const AddEventType = () => {
     // send updated data to the server here
   };
   return (
-    <div className="bg-gray-200 w-full h-full rounded-2xl shadow-lg p-10 flex justify-center">
+    <div className="bg-white bg-opacity-30 backdrop-filter backdrop-blur-xl w-full h-full rounded-2xl shadow-lg p-10 flex justify-center">
       <form
         onSubmit={handleSubmit}
         className="w-full h-fit bg-gray-800 p-7  text-white flex flex-col justify-between"

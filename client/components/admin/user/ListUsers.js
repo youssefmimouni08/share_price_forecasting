@@ -35,7 +35,7 @@ const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
   const paginatedData = sortedData.slice(startIndex, startIndex + perPage);
 
   return (
-    <div className="bg-gray-200 w-full h-full rounded-2xl shadow-lg p-10 flex justify-center items-start">
+    <div className="bg-white bg-opacity-30 backdrop-filter backdrop-blur-xl w-full h-full rounded-2xl shadow-lg p-10 flex justify-center items-start">
       <table className="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
         <thead className="text-xs rounded-2xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>

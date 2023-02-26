@@ -2,7 +2,7 @@ const WorldData = () => {
   return (
     <div
       id="tree-container"
-      className=" bg-gray-200 w-full h-full rounded-2xl shadow-lg p-10  "
+      className=" bg-white bg-opacity-30 backdrop-filter backdrop-blur-xl w-full h-full rounded-2xl shadow-lg p-10  "
     >
       <div className=" text-center text-2xl font-bold ">
         Oil production in The world

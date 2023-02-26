@@ -1,6 +1,14 @@
 import Image from "next/legacy/image";
 import logo from "../public/Vermeg_logo.png";
-import { SearchIcon, MenuIcon, UserCircleIcon } from "@heroicons/react/solid";
+import {
+  SearchIcon,
+  MenuIcon,
+  BookmarkIcon,
+  PaperAirplaneIcon,
+  LightBulbIcon,
+  UserCircleIcon,
+  ShoppingCartIcon,
+} from "@heroicons/react/solid";
 import {
   PresentationChartBarIcon,
   PresentationChartLineIcon,
@@ -31,7 +39,7 @@ function Header({ auth: { isAuthenticated, loading, user }, logout }) {
   );
   const authLinks = (
     <>
-      <div className=" hidden md:inline-flex space-x-6">
+      <div className=" hidden md:inline-flex space-x-6 font-forum whitespace-nowrap">
         {user && user.role == "admin" && (
           <Link
             href="/admin"
@@ -43,30 +51,21 @@ function Header({ auth: { isAuthenticated, loading, user }, logout }) {
         )}
         <Link
           href="/forecast"
-          className="flex space-x-2 items-center cursor-pointer py-2 px-4 hover:bg-[#ddd]"
+          className="flex space-x-2 items-center cursor-pointer py-2 px-4 bg-white shadow-lg hover:bg-blue-200 rounded-full"
         >
-          <ChipIcon className="h-6 " />
           <p>Impact Calculator</p>
         </Link>
         <Link
           href="/history"
-          className="flex space-x-2 items-center cursor-pointer py-2 px-4 hover:bg-[#ddd]"
+          className="flex space-x-2 items-center cursor-pointer py-2 px-4 bg-white shadow-lg rounded-full hover:bg-blue-200 "
         >
-          <PresentationChartBarIcon className="h-6" />
           <p>My predictions</p>
-        </Link>
-        <Link
-          href="#"
-          onClick={logout}
-          className="flex space-x-2 items-center cursor-pointer text-black py-2 px-4 hover:bg-[#ddd]"
-        >
-          <LogoutIcon className="h-6" />
         </Link>
       </div>
       <div className="relative inline-block float-right md:hidden ">
         <button
           onClick={() => toggle()}
-          className="flex items-center space-x-2 border-2 p-2 rounded-full cursor-pointer hover:bg-[#2980B9] focus:bg-[#2980B9]"
+          className="flex items-center space-x-2 border-2 p-2 rounded-full cursor-pointer  hover:bg-[#2980B9] focus:bg-[#2980B9]"
         >
           <MenuIcon className="h-6" />
           <UserCircleIcon className="h-6" />
@@ -108,16 +107,14 @@ function Header({ auth: { isAuthenticated, loading, user }, logout }) {
       <div className="hidden md:inline-flex space-x-6">
         <Link
           href="/register"
-          className="flex space-x-2 items-center cursor-pointer py-2 px-4 hover:bg-[#ddd]"
+          className="flex space-x-2 items-center cursor-pointer py-2 px-4 bg-white rounded-full shadow-lg"
         >
-          <UserAddIcon className="h-6 " />
           <p>Register</p>
         </Link>
         <Link
           href="/login"
-          className="flex space-x-2 items-center cursor-pointer py-2 px-4 hover:bg-[#ddd]"
+          className="flex space-x-2 items-center cursor-pointer py-2 px-4 bg-white rounded-full shadow-lg"
         >
-          <LoginIcon className="h-6" />
           <p>Login</p>
         </Link>
       </div>
@@ -153,8 +150,62 @@ function Header({ auth: { isAuthenticated, loading, user }, logout }) {
       </div>
     </>
   );
+  const profileLinks = (
+    <>
+      <div className="hidden md:inline-flex space-x-6 text-gray-500">
+        <Link
+          href="/"
+          className="flex space-x-2 items-center cursor-pointer py-2 px-2 bg-white rounded-full shadow-lg hover:bg-blue-200"
+        >
+          <LightBulbIcon className="h-6" />
+        </Link>
+        <Link
+          href="/"
+          className="flex space-x-2 items-center cursor-pointer py-2 px-2 bg-white rounded-full shadow-lg hover:bg-blue-200"
+        >
+          <ShoppingCartIcon className="h-6 " />
+        </Link>
+        <Link
+          href="/"
+          className="flex space-x-2 items-center cursor-pointer py-2 px-2 bg-white rounded-full shadow-lg hover:bg-blue-200"
+        >
+          <UserCircleIcon className="h-6 " />
+        </Link>
+      </div>
+      <div className="relative inline-block float-right md:hidden ">
+        <button
+          onClick={() => toggle()}
+          className="flex items-center space-x-2 border-2 p-2 rounded-full cursor-pointer hover:bg-[#2980B9] focus:bg-[#2980B9]"
+        >
+          <MenuIcon className="h-6" />
+          <UserCircleIcon className="h-6" />
+        </button>
+
+        <div
+          id="myDropdown"
+          className={`absolute bg-[#f1f1f1] min-w-1 shadow-md right-0 `}
+          style={{ zIndex: 1, display: display ? "block" : "none" }}
+        >
+          <Link
+            href="/register"
+            className="flex space-x-2 items-center cursor-pointer py-3 px-4 hover:bg-[#ddd]"
+          >
+            <UserAddIcon className="h-6 " />
+            <p>Register</p>
+          </Link>
+          <Link
+            href="/login"
+            className="flex space-x-2 items-center cursor-pointer py-3 px-4 hover:bg-[#ddd]"
+          >
+            <LoginIcon className="h-6" />
+            <p>Login</p>
+          </Link>
+        </div>
+      </div>
+    </>
+  );
   return (
-    <header className="font-mono bg-white top-0 z-50 grid grid-cols-2  shadow-md py-5 px-5 md:px-10">
+    <header className="font-mono top-0 z-50 grid grid-cols-2 font-forum  py-5 px-5 md:px-10">
       <div className="flex">
         <Link
           href="/"
@@ -168,11 +219,13 @@ function Header({ auth: { isAuthenticated, loading, user }, logout }) {
             objectPosition="left"
           />
         </Link>
-      </div>
-      <div className="flex items-center justify-end  whitespace-nowrap text-xl">
         {!loading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
         )}
+      </div>
+
+      <div className="flex items-cener justify-end  whitespace-nowrap text-xl">
+        {!loading && <Fragment>{profileLinks}</Fragment>}
       </div>
     </header>
   );

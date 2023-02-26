@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const history = () => {
   return (
-    <Fragment>
+    <div className="bg-mesh bg-no-repeat bg-cover h-screen">
       <Head>
         <title>my-app</title>
         <link rel="icon" href="/favicon.ico"></link>
@@ -16,7 +16,7 @@ const history = () => {
       </Head>
       <Header />
       <List />
-    </Fragment>
+    </div>
   );
 };
 

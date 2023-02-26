@@ -5,6 +5,7 @@ import {
   ADJUST_OBJECT_WEIGHT,
   ADJUST_TRIGGER_WEIGHT,
   FORECAST_ERROR,
+  SUBMIT_REAL_IMPACT,
   GET_FORECAST,
   GET_NEW_PREDICTION,
   SAVE_PREDICTION,
@@ -179,3 +180,29 @@ export const adjustTrigger =
       });
     }
   };
+
+export const submitRealImpact = (id, impact) => async (dispatch) => {
+  console.log(id, impact);
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify({ id: id, value: impact });
+    const res = await axios.put(
+      "http://localhost:5000/api/UpdatePrediction",
+      body,
+      config
+    );
+    dispatch({
+      type: SUBMIT_REAL_IMPACT,
+      payload: { id: id, value: impact },
+    });
+  } catch (err) {
+    dispatch({
+      type: FORECAST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};

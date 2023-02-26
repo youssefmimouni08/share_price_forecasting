@@ -33,25 +33,25 @@ const Sidebar = ({ setSelectedMenuItem, submenu: { selectedMenuItem } }) => {
     setSelectedMenuItem("");
   }
   return (
-    <div className="relative flex  bg-gray-800 h-full rounded-2xl shadow-lg ">
+    <div className="relative flex  bg-white bg-opacity-10 backdrop-filter backdrop-blur-xl h-full rounded-2xl shadow-lg border">
       <div className="p-3 space-y-5">
         <div className="p-2 hover:bg-gray-700 cursor-pointer">
           {isOpen ? (
             <ChevronDoubleLeftIcon
               onClick={toggleMenu}
-              className="h-6  text-white "
+              className="h-6  text-black "
             />
           ) : (
             <ChevronDoubleRightIcon
               onClick={toggleMenu}
-              className="h-6   text-white "
+              className="h-6   text-black "
             />
           )}
         </div>
         <div className={`  ${isOpen ? "w-fit whitespace-nowrap" : ""} `}>
           <ul>
             <li
-              className="flex p-2 text-gray-300 hover:bg-gray-700 cursor-pointer"
+              className="flex p-2 text-black hover:bg-gray-700 cursor-pointer"
               onClick={() => setSelectedMenuItem("manageUsers")}
             >
               {isOpen ? (
@@ -64,7 +64,7 @@ const Sidebar = ({ setSelectedMenuItem, submenu: { selectedMenuItem } }) => {
               )}
             </li>
             <li
-              className="flex p-2 text-gray-300 hover:bg-gray-700 cursor-pointer"
+              className="flex p-2 text-black hover:bg-gray-700 cursor-pointer"
               onClick={() => setSelectedMenuItem("manageWorldData")}
             >
               {isOpen ? (
@@ -77,7 +77,7 @@ const Sidebar = ({ setSelectedMenuItem, submenu: { selectedMenuItem } }) => {
               )}
             </li>
             <li
-              className="flex p-2 text-gray-300 hover:bg-gray-700 cursor-pointer"
+              className="flex p-2 text-black hover:bg-gray-700 cursor-pointer"
               onClick={() => setSelectedMenuItem("manageEventTypes")}
             >
               {isOpen ? (

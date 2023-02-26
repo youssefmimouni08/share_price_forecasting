@@ -41,7 +41,7 @@ router.get("/myPredictions", auth, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-router.get("/UpdatePrediction", auth, async (req, res) => {
+router.put("/UpdatePrediction", auth, async (req, res) => {
   try {
     console.log(req.body.id);
     const myPrediction = await History.findOne({ _id: req.body.id }).populate([

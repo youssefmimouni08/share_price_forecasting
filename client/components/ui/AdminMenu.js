@@ -70,7 +70,7 @@ const AdminMenu = ({ auth: { isAuthenticated, loading }, logout }) => {
     </div>
   );
   return (
-    <div className="flex justify-end  bg-gray-800 rounded-2xl shadow-lg p-4  h-16 text-white">
+    <div className="flex justify-end  bg-white bg-opacity-30 backdrop-filter backdrop-blur-xl rounded-2xl shadow-lg p-4  h-16 text-gray-400">
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
       )}

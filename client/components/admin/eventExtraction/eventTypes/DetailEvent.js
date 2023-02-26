@@ -11,7 +11,7 @@ const DetailEvent = ({ events: { eventDetail, loading }, getEventDetails }) => {
   }, [router.query.id]);
 
   return (
-    <div className="bg-gray-200 w-full h-full rounded-2xl shadow-lg p-10 flex justify-center">
+    <div className="bg-white bg-opacity-30 backdrop-filter backdrop-blur-xlbg-white bg-opacity-30 backdrop-filter backdrop-blur-xl w-full h-full rounded-2xl shadow-lg p-10 flex justify-center">
       {eventDetail && <UpdateForm data={eventDetail} />}
     </div>
   );

@@ -13,7 +13,7 @@ const detail = () => {
         <title>Event Extraction | Admin dashboard</title>
         <link rel="icon" href="/favicon.ico"></link>
       </Head>
-      <div className="bg-[#394251] flex p-5 space-x-5 h-screen font-mono">
+      <div className="bg-mesh bg-no-repeat bg-cover flex p-5 space-x-5 h-screen font-mono">
         <Sidebar />
         <div className="flex flex-col w-full space-y-5">
           <AdminMenu />

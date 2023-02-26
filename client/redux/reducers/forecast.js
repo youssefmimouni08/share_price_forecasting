@@ -6,6 +6,7 @@ import {
   ADJUST_TRIGGER_WEIGHT,
   ADJUST_ACTEUR_WEIGHT,
   SET_LOADING,
+  SUBMIT_REAL_IMPACT,
   SAVE_PREDICTION,
 } from "../types";
 
@@ -66,6 +67,23 @@ export default function (state = initialState, action) {
     case SAVE_PREDICTION:
       return {
         ...state,
+      };
+    case SUBMIT_REAL_IMPACT:
+      console.log(payload.id);
+      const mypredictionIndex = state.myPredictions.findIndex(
+        (prediction) => prediction._id === payload.id
+      );
+
+      return {
+        ...state,
+        myPredictions: [
+          ...state.myPredictions.slice(0, mypredictionIndex),
+          {
+            ...state.myPredictions[mypredictionIndex],
+            real_impact: payload.value,
+          },
+          ...state.myPredictions.slice(mypredictionIndex + 1),
+        ],
       };
     default:
       return state;

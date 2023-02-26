@@ -13,7 +13,7 @@ const ListCountries = ({
   }, []);
 
   return (
-    <div className="bg-gray-200 w-full h-full rounded-2xl shadow-lg p-10 flex flex-col space-y-10 ">
+    <div className="bg-white bg-opacity-30 backdrop-filter backdrop-blur-xl w-full h-full rounded-2xl shadow-lg p-10 flex flex-col space-y-10 ">
       {all_countries && <DataTable data={all_countries} />}
     </div>
   );

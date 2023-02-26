@@ -10,13 +10,13 @@ import styles from "../styles/Home.module.css";
 
 export default function registerPage() {
   return (
-    <Fragment>
+    <div className="bg-mesh bg-no-repeat bg-cover">
       <Head>
         <title>my-app</title>
         <link rel="icon" href="/favicon.ico"></link>
       </Head>
       <Header />
       <RegisterHero />
-    </Fragment>
+    </div>
   );
 }

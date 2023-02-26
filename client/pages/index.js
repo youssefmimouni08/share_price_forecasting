@@ -10,13 +10,13 @@ import Landing from "../components/layout/Landing";
 
 export default function Home() {
   return (
-    <Fragment>
+    <div className="bg-mesh bg-no-repeat bg-cover">
       <Head>
         <title>my-app</title>
         <link rel="icon" href="/favicon.ico"></link>
       </Head>
       <Header />
       <Landing />
-    </Fragment>
+    </div>
   );
 }
