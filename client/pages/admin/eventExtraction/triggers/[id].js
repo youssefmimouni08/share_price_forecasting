@@ -4,8 +4,6 @@ import DetailTrigger from "../../../../components/admin/eventExtraction/triggers
 import AdminMenu from "../../../../components/ui/AdminMenu";
 import Sidebar from "../../../../components/ui/Sidebar";
 
-import React from "react";
-
 const detail = () => {
   return (
     <Fragment>

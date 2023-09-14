@@ -1,4 +1,4 @@
-import { GET_ALL_USERS, GET_USER } from "../types";
+import { DELETE_USER, GET_ALL_USERS, GET_USER } from "../types";
 
 const initialState = {
   all_users: [],
@@ -23,6 +23,16 @@ export default function (state = initialState, action) {
         ...state,
         userDetail: payload,
         loading: false,
+      };
+
+    case DELETE_USER:
+      console.log(payload.deletedUser._id);
+      const updatedUsers = state.all_users.filter(
+        (user) => user._id !== payload.deletedUser._id
+      );
+      return {
+        ...state,
+        all_users: updatedUsers,
       };
 
     default:

@@ -1,4 +1,9 @@
-import { GET_ALL_TRIGGERS, GET_TRIGGER, TRIGGER_ERROR } from "../types";
+import {
+  DELETE_TRIGGER,
+  GET_ALL_TRIGGERS,
+  GET_TRIGGER,
+  TRIGGER_ERROR,
+} from "../types";
 
 const initialState = {
   all_triggers: [],
@@ -29,7 +34,14 @@ export default function (state = initialState, action) {
         loading: false,
         error: payload,
       };
-
+    case DELETE_TRIGGER:
+      const updated = state.all_triggers.filter(
+        (trigger) => trigger._id !== payload.deleted._id
+      );
+      return {
+        ...state,
+        all_triggers: updated,
+      };
     default:
       return state;
   }

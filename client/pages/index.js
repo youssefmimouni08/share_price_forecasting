@@ -8,7 +8,7 @@ import styles from "../styles/Home.module.css";
 
 import Landing from "../components/layout/Landing";
 
-export default function Home() {
+const Home = () => {
   return (
     <div className="bg-mesh bg-no-repeat bg-cover">
       <Head>
@@ -19,4 +19,5 @@ export default function Home() {
       <Landing />
     </div>
   );
-}
+};
+export default Home;

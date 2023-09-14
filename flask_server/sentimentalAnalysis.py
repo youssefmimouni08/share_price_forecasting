@@ -1,6 +1,7 @@
 import openai
 import json
 
+
 # Open the JSON file
 with open('../config/default.json', 'r') as file:
   # Parse the JSON data

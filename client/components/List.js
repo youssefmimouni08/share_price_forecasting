@@ -49,10 +49,13 @@ const List = ({
         className="
           overflow-x-auto relative shadow-md rounded-lg"
       >
-        <table className=" text-sm text-left text-gray-500  " id="dataTable">
-          <thead className="text-sm  uppercase  bg-opacity-30 backdrop-filter backdrop-blur-xl  text-gray-700">
+        <table
+          className=" text-sm bg-white bg-opacity-30 backdrop-filter backdrop-blur-xl text-left text-gray-500  "
+          id="dataTable"
+        >
+          <thead className="text-sm    uppercase   text-gray-700">
             <tr className=" ">
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="py-3 px-6 ">
                 Updated_at
               </th>
               <th scope="col" className="py-3 px-6">

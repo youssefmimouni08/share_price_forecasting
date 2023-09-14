@@ -6,9 +6,9 @@ import {
 } from "@heroicons/react/outline";
 const Home = () => {
   return (
-    <div className="text-center font-forum w-2/3">
-      <div className="flex  justify-around ">
-        <div className="w-1/3">
+    <div className="text-center font-forum w-6/7 md:w-2/3">
+      <div className="flex flex-col md:flex-row items-center justify-around ">
+        <div className="w-11/12 md:w-1/3">
           <h2 className="text-lg font-medium mb-3 ">
             <div className="flex justify-center">
               <SunIcon className=" h-8" />
@@ -21,7 +21,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="w-1/3">
+        <div className="w-11/12 md:w-1/3">
           <h2 className="text-lg font-medium mb-3 ">
             <div className="flex justify-center">
               <LightningBoltIcon className="h-8" />
@@ -35,7 +35,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="w-1/3 text-center">
+        <div className="w-11/12 md:w-1/3 text-center">
           <h2 className="text-lg font-medium mb-3 ">
             <div className="flex justify-center">
               <XCircleIcon className="h-8" />

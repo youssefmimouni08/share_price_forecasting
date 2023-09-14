@@ -1,5 +1,10 @@
 import axios from "axios";
-import { ARGUMENT_ERROR, GET_ALL_ARGUMENTS, GET_ARGUMENT } from "../types";
+import {
+  ARGUMENT_ERROR,
+  DELETE_ARGUMENT,
+  GET_ALL_ARGUMENTS,
+  GET_ARGUMENT,
+} from "../types";
 
 export const getAllArguments = () => async (dispatch) => {
   try {
@@ -26,6 +31,23 @@ export const getArgumentDetails = (arg_id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: ARGUMENT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const deleteArgument = (arg_id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      "http://localhost:5000/api/Objects/" + arg_id
+    );
+    dispatch({
+      type: DELETE_ARGUMENT,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: TRIGGER_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

@@ -1,4 +1,9 @@
-import { ARGUMENT_ERROR, GET_ALL_ARGUMENTS, GET_ARGUMENT } from "../types";
+import {
+  ARGUMENT_ERROR,
+  GET_ALL_ARGUMENTS,
+  GET_ARGUMENT,
+  DELETE_ARGUMENT,
+} from "../types";
 
 const initialState = {
   all_arguments: [],
@@ -13,6 +18,7 @@ export default function (state = initialState, action) {
     case GET_ALL_ARGUMENTS:
       return {
         ...state,
+
         all_arguments: payload,
         argumentDetail: null,
         loading: false,
@@ -29,7 +35,14 @@ export default function (state = initialState, action) {
         loading: false,
         error: payload,
       };
-
+    case DELETE_ARGUMENT:
+      const updated = state.all_arguments.filter(
+        (arg) => arg._id !== payload.deleted._id
+      );
+      return {
+        ...state,
+        all_arguments: updated,
+      };
     default:
       return state;
   }

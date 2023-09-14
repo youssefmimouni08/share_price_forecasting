@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Object = require("../models/Object");
+const auth = require("../middleware/auth");
 
 router.get("/Objects", async (req, res) => {
   try {
@@ -10,7 +11,19 @@ router.get("/Objects", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+router.delete("/Objects/:id", auth, async (req, res) => {
+  const { id } = req.params;
 
+  try {
+    const deleted = await Object.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.status(404).json({ message: "object not found" });
+    }
+    res.json({ message: "object deleted successfully", deleted });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 router.get("/Objects/:noun", async (req, res) => {
   try {
     const object = await Object.findOne({

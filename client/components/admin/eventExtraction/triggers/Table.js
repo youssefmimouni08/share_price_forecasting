@@ -1,9 +1,10 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, connect } from "react-redux";
+import { deleteTrigger } from "../../../../redux/actions/trigger";
 import Loading from "../../../ui/Loading";
 
-const Table = ({ data }) => {
+const Table = ({ data, deleteTrigger }) => {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(6);
   const [sortColumn, setSortColumn] = useState(null);
@@ -17,7 +18,9 @@ const Table = ({ data }) => {
       setSortDirection("asc");
     }
   };
-
+  const onDelete = (trigger_id) => {
+    deleteTrigger(trigger_id);
+  };
   const sortedData = data.sort((a, b) => {
     if (sortDirection === "asc") {
       return a[sortColumn] > b[sortColumn] ? 1 : -1;
@@ -92,7 +95,7 @@ const Table = ({ data }) => {
                 </td>
                 <td className="py-4 px-6">
                   <button
-                    onClick={() => onDelete(row.id)}
+                    onClick={() => onDelete(row._id)}
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Delete
@@ -122,4 +125,4 @@ const Table = ({ data }) => {
   );
 };
 
-export default Table;
+export default connect(null, { deleteTrigger })(Table);

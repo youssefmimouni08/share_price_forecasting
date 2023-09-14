@@ -33,6 +33,7 @@ module.exports = {
         blob: "url('/blob.png')",
         lines: "url('/lines.svg')",
         mesh: "url('/bg_gradient.svg')",
+        "blue-mesh": "url('/blue-mesh.svg')",
       },
       colors: {
         "4650a1": "#4650a1",

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Trigger = require("../models/Trigger");
 const EventType = require("../models/EventType");
+const auth = require("../middleware/auth");
 
 router.get("/triggers", async (req, res) => {
   try {
@@ -15,7 +16,19 @@ router.get("/triggers", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+router.delete("/triggers/:id", auth, async (req, res) => {
+  const { id } = req.params;
 
+  try {
+    const deleted = await Trigger.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.status(404).json({ message: "trigger not found" });
+    }
+    res.json({ message: "trigger deleted successfully", deleted });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 /*router.get("/Verbs", async (req, res) => {
   try {
     verb_id = [];

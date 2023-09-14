@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { loadUser } from "../redux/actions/auth";
 import { useEffect } from "react";
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
@@ -15,6 +15,6 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
     </Provider>
   );
-}
+};
 
 export default MyApp;

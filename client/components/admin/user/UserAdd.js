@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { addUser } from "../../../redux/actions/user";
+import { connect } from "react-redux";
 
-const UserAdd = () => {
+const UserAdd = ({ addUser }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [role, setRole] = useState("user");
   const [formChanged, setFormChanged] = useState(false);
 
@@ -20,12 +23,17 @@ const UserAdd = () => {
     setRole(e);
     setFormChanged(true);
   };
+  const handlePasswordChange = (e) => {
+    setPassword(e);
+    setFormChanged(true);
+  };
   // Options for the role select dropdown
   const roleOptions = ["superUser", "user", "admin"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, email, role);
+    console.log(name, email, role, password);
+    addUser(name, email, role, password);
     // send updated data to the server here
   };
   return (
@@ -73,6 +81,23 @@ const UserAdd = () => {
             <div className="w-full px-3">
               <label
                 className="block uppercase tracking-wide  text-xs font-bold mb-2"
+                htmlFor="email"
+              >
+                Password
+              </label>
+              <input
+                className="appearance-none block w-full text-gray-700 bg-gray-400  border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => handlePasswordChange(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="flex flex-wrap -mx-3 mb-6 ">
+            <div className="w-full px-3">
+              <label
+                className="block uppercase tracking-wide  text-xs font-bold mb-2"
                 htmlFor="role"
               >
                 Role
@@ -109,7 +134,7 @@ const UserAdd = () => {
             className={`w-full h-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-70 disabled:cursor-not-allowed `}
             type="submit"
           >
-            Update User
+            Add User
           </button>
         </div>
       </form>
@@ -117,4 +142,4 @@ const UserAdd = () => {
   );
 };
 
-export default UserAdd;
+export default connect(null, { addUser })(UserAdd);

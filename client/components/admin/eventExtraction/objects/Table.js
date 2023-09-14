@@ -1,9 +1,10 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, connect } from "react-redux";
+import { deleteArgument } from "../../../../redux/actions/arguments";
 import Loading from "../../../ui/Loading";
 
-const Table = ({ data }) => {
+const Table = ({ data, deleteArgument }) => {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(6);
   const [sortColumn, setSortColumn] = useState(null);
@@ -25,7 +26,9 @@ const Table = ({ data }) => {
       return a[sortColumn] < b[sortColumn] ? 1 : -1;
     }
   });
-
+  const onDelete = (arg_id) => {
+    deleteArgument(arg_id);
+  };
   const startIndex = (page - 1) * perPage;
   const paginatedData = sortedData.slice(startIndex, startIndex + perPage);
   return (
@@ -71,7 +74,7 @@ const Table = ({ data }) => {
 
                 <td className="py-4 px-6">
                   <Link
-                    href={`triggers/${row.object}`}
+                    href={`objects/${row.object}`}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Update
@@ -79,7 +82,7 @@ const Table = ({ data }) => {
                 </td>
                 <td className="py-4 px-6">
                   <button
-                    onClick={() => onDelete(row.id)}
+                    onClick={() => onDelete(row._id)}
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Delete
@@ -109,4 +112,4 @@ const Table = ({ data }) => {
   );
 };
 
-export default Table;
+export default connect(null, { deleteArgument })(Table);

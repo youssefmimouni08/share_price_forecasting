@@ -63,7 +63,7 @@ function TextArea({
         </div>
       )}
       <form
-        className="flex flex-row space-x-2 border w-2/5 rounded-md p-2 bg-white shadow-lg"
+        className="flex flex-row space-x-2 border w-11/12 md:w-1/3 rounded-md p-2 bg-white shadow-lg"
         onSubmit={(e) => onSubmit(e)}
       >
         <textarea

@@ -24,6 +24,7 @@ app.use("/api/", require("./routes/trigger"));
 app.use("/api/", require("./routes/eventType"));
 app.use("/api/", require("./routes/object"));
 app.use("/api/", require("./routes/history"));
+app.use("/", require("./routes/oilPriceApi"));
 app.use("/", require("./routes/api/google_auth"));
 app.use("/", require("./routes/forecast_model"));
 app.get("/", (req, res) => res.send("API Running"));

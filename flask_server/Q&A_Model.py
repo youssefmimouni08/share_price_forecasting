@@ -60,7 +60,7 @@ def multiple_question_answering(paragraph):
     print(triggers)
     if len(triggers)>1:
         print(len(triggers))
-        events = list_events(paragraph)
+        """events = list_events(paragraph)"""
     elif len(triggers)==1:
         events.append(paragraph)
     else:
@@ -141,13 +141,13 @@ def multiple_question_answering(paragraph):
                     
                 country =  fetch_country(answer)
                 object =  fetch_object(answer) 
-                #check if it country 
+                #check if its a country 
                 if country != 'null':
                     content = json.loads(country)
                     res[question['argumentRole']] = {"name":answer,"oil Production":content['OilProduction'],'borders':content['VOISINS']}
             
                     
-                #check if it a object
+                #check if its an object
                 elif object != 'null': 
                     content = json.loads(object)
                     res[question["argumentRole"]] = {"name":answer,"weight":content['weight']}  

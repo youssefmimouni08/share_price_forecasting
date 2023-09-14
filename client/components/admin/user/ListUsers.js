@@ -1,10 +1,18 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { getAllUsers, getUserDetails } from "../../../redux/actions/user";
+import {
+  deleteUser,
+  getAllUsers,
+  getUserDetails,
+} from "../../../redux/actions/user";
 import Loading from "../../ui/Loading";
 
-const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
+const ListUsers = ({
+  users: { all_users, loading },
+  getAllUsers,
+  deleteUser,
+}) => {
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -22,7 +30,9 @@ const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
       setSortDirection("asc");
     }
   };
-
+  const onDelete = (id) => {
+    deleteUser(id);
+  };
   const sortedData = all_users.sort((a, b) => {
     if (sortDirection === "asc") {
       return a[sortColumn] > b[sortColumn] ? 1 : -1;
@@ -102,7 +112,7 @@ const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
                 </td>
                 <td className="py-4 px-6">
                   <button
-                    onClick={() => onDelete(row.id)}
+                    onClick={() => onDelete(row._id)}
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Delete
@@ -118,6 +128,8 @@ const ListUsers = ({ users: { all_users, loading }, getAllUsers }) => {
 const mapStateToProps = (state) => ({
   users: state.users,
 });
-export default connect(mapStateToProps, { getAllUsers, getUserDetails })(
-  ListUsers
-);
+export default connect(mapStateToProps, {
+  getAllUsers,
+  getUserDetails,
+  deleteUser,
+})(ListUsers);

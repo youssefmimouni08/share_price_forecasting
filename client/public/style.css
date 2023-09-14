@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'TT Drugs';
+    src: local('TT Drugs Regular'), local('TT-Drugs-Regular'),
+        url('TTDrugs-Regular.woff2') format('woff2'),
+        url('TTDrugs-Regular.woff') format('woff'),
+        url('TTDrugs-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }

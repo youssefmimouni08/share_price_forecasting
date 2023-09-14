@@ -1,4 +1,5 @@
 import { AdjustmentsIcon } from "@heroicons/react/outline";
+import { CodeIcon } from "@heroicons/react/solid";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
@@ -59,73 +60,85 @@ const ArgumentDetails = ({
             value=""
             className="sr-only peer"
           />
-          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300  rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
+          <div className="w-11 h-6 bg-gray-200 bg-opacity-30 backdrop-filter backdrop-blur-xl peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300  rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
           <span className="ml-3 text-sm font-medium text-black ">
             {showDetails ? "Hide details" : "Show details"}
           </span>
         </label>
       </div>
       {showDetails && (
-        <div className="flex flex-row justify-between  px-4 py-2 bg-white rounded-lg shadow-md text-center">
-          <form
-            className="flex justify-between w-full form"
-            onSubmit={handleSubmit}
-          >
-            {Object.keys(description).map((key, id) => {
-              if (
-                !description[key]["weight"] &&
-                !description[key]["oil Production"]
-              ) {
-                return null;
-              }
-              return (
-                <div key={id} className="space-y-3">
-                  <p className="font-bold">{key}</p>
-                  <p>{description[key].name}</p>
-                  {description[key]["weight"] ? (
-                    <div className="flex items-center space-x-2">
-                      <input
-                        type="text"
-                        disabled={isDisabled}
-                        id={`${key}_weight`}
-                        name={`${key}_weight`}
-                        onChange={handleChange}
-                        aria-label={`${key}_weight`}
-                        className="text-center self-center border border-gray-300  rounded-lg focus:ring-blue-500 focus:border-blue-500 w-24 p-2  "
-                        defaultValue={`${description[key]["weight"]} `}
-                        required
-                      />{" "}
-                      <p>%</p>
-                    </div>
-                  ) : (
-                    <p className="p-2">{description[key]["oil Production"]}</p>
-                  )}
-                </div>
-              );
-            })}
-            {["superUser", "admin"].includes(role) ? (
-              isDisabled ? (
-                <button
-                  onClick={handleClick}
-                  className="flex space-x-1 text-blue-500 cursor-pointer hover:underline hover:text-blue-700 h-fit w-40"
-                >
-                  <AdjustmentsIcon className="h-6" />
-                  <p className="">Make Adjustments </p>
-                </button>
+        <div className="flex flex-row justify-between space-x-8">
+          <div className="flex flex-row justify-between w-full  px-4 py-2 bg-white bg-opacity-30 backdrop-filter backdrop-blur-xl rounded-lg shadow-md text-center">
+            <form
+              className="flex justify-between w-full form"
+              onSubmit={handleSubmit}
+            >
+              {Object.keys(description).map((key, id) => {
+                if (
+                  !description[key]["weight"] &&
+                  !description[key]["oil Production"]
+                ) {
+                  return null;
+                }
+                return (
+                  <div key={id} className="space-y-3">
+                    <p className="font-bold">{key}</p>
+                    <p>{description[key].name}</p>
+                    {description[key]["weight"] ? (
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="text"
+                          disabled={isDisabled}
+                          id={`${key}_weight`}
+                          name={`${key}_weight`}
+                          onChange={handleChange}
+                          aria-label={`${key}_weight`}
+                          className="text-center self-center border border-gray-300  rounded-lg focus:ring-blue-500 focus:border-blue-500 w-24 p-2  "
+                          defaultValue={`${description[key]["weight"]} `}
+                          required
+                        />{" "}
+                        <p>%</p>
+                      </div>
+                    ) : (
+                      <p className="p-2">
+                        {description[key]["oil Production"]}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+              {["superUser", "admin"].includes(role) ? (
+                isDisabled ? (
+                  <button
+                    onClick={handleClick}
+                    className="flex space-x-1 text-blue-500 cursor-pointer hover:underline hover:text-blue-700 h-fit w-40"
+                  >
+                    <AdjustmentsIcon className="h-6" />
+                    <p className="">Make Adjustments </p>
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    onClick={handleClick}
+                    className="flex space-x-1 text-blue-500 cursor-pointer hover:underline hover:text-blue-700 h-fit w-40"
+                  >
+                    <AdjustmentsIcon className="h-6" />
+                    <p className="">Save Adjustments </p>
+                  </button>
+                )
               ) : (
-                <button
-                  type="submit"
-                  onClick={handleClick}
-                  className="flex space-x-1 text-blue-500 cursor-pointer hover:underline hover:text-blue-700 h-fit w-40"
-                >
-                  <AdjustmentsIcon className="h-6" />
-                  <p className="">Save Adjustments </p>
-                </button>
-              )
-            ) : (
-              ""
-            )}
-          </form>
+                ""
+              )}
+            </form>
+          </div>
+          <div className="flex flex-row font-forum justify-between bg-gradient-to-b from-indigo-900 to-indigo-500  w-1/5 rounded-xl text-white px-4 py-2 ">
+            <div className="flex flex-col space-y-2 ">
+              <p className="text-xs"> {description.event}</p>
+              <p className="underline">Detected Event:</p>
+              {description.trigger_verb.event_type}
+            </div>
+            <CodeIcon className="h-6" />
+          </div>
         </div>
       )}
     </div>

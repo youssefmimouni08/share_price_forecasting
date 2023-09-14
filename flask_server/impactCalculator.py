@@ -48,13 +48,13 @@ def impactCalculator(json_obj):
             obj['weight'] = obj['weight']/100
         total_impact *= obj['weight']
     
-    sentiment = classify_sentiment(json_obj['event'])
+    """sentiment = classify_sentiment(json_obj['event'])
     if sentiment == "positive" :
         total_impact = abs(total_impact)*-1
     elif sentiment =="negative" :
         total_impact = abs(total_impact)*1
     elif sentiment == "neutral" :
-        total_impact = "has no impact"
+        total_impact = "has no impact" """
 
     
     return float("{:.4f}".format(total_impact)) if total_impact!= "null" else "null"
