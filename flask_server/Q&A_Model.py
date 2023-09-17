@@ -60,7 +60,7 @@ def multiple_question_answering(paragraph):
     print(triggers)
     if len(triggers)>1:
         print(len(triggers))
-        """events = list_events(paragraph)"""
+        events = list_events(paragraph)
     elif len(triggers)==1:
         events.append(paragraph)
     else:

@@ -8,7 +8,7 @@ import { connect, useSelector } from "react-redux";
 import Landing from "../components/layout/Landing";
 const Forecast = () => {
   return (
-    <div className="bg-mesh bg-cover h-auto">
+    <div className="bg-mesh bg-cover h-screen">
       <Head>
         <title>my-app</title>
         <link rel="icon" href="/favicon.ico"></link>
